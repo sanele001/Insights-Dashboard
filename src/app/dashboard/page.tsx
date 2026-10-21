@@ -1,21 +1,50 @@
 import StatCard from "@/src/components/dashboard/statCard";
-import { StatCardProps } from "@/src/components/dashboard/statCard";
-import { HiOutlineCurrencyDollar } from "react-icons/hi";
+import {
+  FaWallet,
+  FaExchangeAlt,
+  FaChartLine,
+  FaShoppingCart,
+} from "react-icons/fa";
 
 export default function Home() {
-  const totalSpentData: StatCardProps = {
-    title: "Total Spent",
-    amount: "R 18,450",
-    percentageChange: 12,
-    comparisonText: "vs. previous 3 months",
-    icon: HiOutlineCurrencyDollar,
-    iconBgColor: "bg-blue-50",
-    iconColor: "text-blue-600",
+  const Mock = {
+    period: "30d",
+    totalSpent: 4250.75,
+    transactionCount: 47,
+    averageTransaction: 90.44,
+    topCategory: "Groceries",
+    comparedToPrevious: {
+      spentChange: 12.5,
+      transactionChange: -3.2,
+    },
   };
 
   return (
     <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <StatCard {...totalSpentData} />
+      <StatCard
+        title="Total Spent"
+        value={Mock.totalSpent}
+        percentageChange={Mock.comparedToPrevious.spentChange}
+        comparisonText={`vs previous ${Mock.period}`}
+        Icon={FaWallet}
+      />
+      <StatCard
+        title="Transactions"
+        value={Mock.transactionCount}
+        percentageChange={Mock.comparedToPrevious.transactionChange}
+        comparisonText={`vs previous ${Mock.period}`}
+        Icon={FaExchangeAlt}
+      />
+      <StatCard
+        title="Average Transaction"
+        value={Mock.averageTransaction}
+        Icon={FaChartLine}
+      />
+      <StatCard
+        title="Top Category"
+        value={Mock.topCategory}
+        Icon={FaShoppingCart}
+      />
     </div>
   );
 }
