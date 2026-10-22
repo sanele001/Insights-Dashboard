@@ -3,14 +3,14 @@
 import { useId } from "react";
 import { FaRegCalendarAlt, FaChevronDown } from "react-icons/fa";
 
-export const PERIOD_OPTIONS = [
+export const periodOptions = [
   { value: "7d", label: "Last 7 days" },
   { value: "30d", label: "Last 30 days" },
   { value: "90d", label: "Last 90 days" },
   { value: "1y", label: "Last year" },
 ] as const;
 
-export type Period = (typeof PERIOD_OPTIONS)[number]["value"];
+export type Period = (typeof periodOptions)[number]["value"];
 
 type PeriodSelectorProps = {
   value: Period;
@@ -40,7 +40,7 @@ export default function PeriodSelector({
         onChange={(e) => onChange(e.target.value as Period)}
         className="w-full cursor-pointer appearance-none rounded-lg border border-slate-200 bg-white py-2 pl-9 pr-9 text-sm text-slate-700 shadow-sm outline-none focus:ring-2 focus:ring-blue-500"
       >
-        {PERIOD_OPTIONS.map((o) => (
+        {periodOptions.map((o) => (
           <option key={o.value} value={o.value}>
             {o.label}
           </option>
