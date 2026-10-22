@@ -1,5 +1,5 @@
 import { FiTrendingUp, FiTrendingDown } from "react-icons/fi";
-import type { StatCardProps } from "@/src/types/types";
+import type { StatCardProps } from "@/src/types/dashBoard";
 
 export default function StatCard({
   value,

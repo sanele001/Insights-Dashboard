@@ -1,10 +1,14 @@
-import StatCard from "@/src/components/dashboard/statCard";
 import SpendingSummary from "@/src/features/spendingSummary";
+import DashboardLayout from "@/src/components/layout/dashBoardLayout";
+import SideMenu from "@/src/components/nav/sideMenu";
 
 export default function DashboardPage() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <SpendingSummary />
-    </div>
+    <DashboardLayout>
+      <SideMenu />
+      <main className="min-w-0 flex-1 pt-14 lg:pt-0">
+        <SpendingSummary />
+      </main>
+    </DashboardLayout>
   );
 }

@@ -1,3 +1,11 @@
+/**
+ * Displays a spending overview with four key financial metrics.
+ *
+ * - Shows total spending, transaction count, average transaction, and top category.
+ * - Uses sample data defined in the component; it accepts no props.
+ * - Renders spending and transaction changes against the previous period.
+ * - Maintains no local state; the summary grid adapts from two to four columns.
+ */
 import SpendingSummaryGrid from "@/src/components/layout/spendingSummaryGrid";
 import StatCard from "@/src/components/dashboard/statCard";
 import {
@@ -20,7 +28,7 @@ export default function SpendingSummary() {
     },
   };
   return (
-    <div className="flex flex-col gap-4">
+    <div className="flex min-w-0 flex-1 flex-col gap-4">
       <h2 className="text-lg font-semibold">Spending Summary</h2>
       <SpendingSummaryGrid>
         <StatCard
