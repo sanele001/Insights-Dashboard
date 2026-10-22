@@ -1,6 +1,6 @@
 import { render, screen } from "@testing-library/react";
 import { FiDollarSign, FiTrendingDown, FiTrendingUp } from "react-icons/fi";
-import StatCard from "../components/dashboard/statCard";
+import StatCard from "@/src/components/dashboard/statCard";
 
 describe("StatCard", () => {
   it("renders the value, title, and positive change styling", () => {
