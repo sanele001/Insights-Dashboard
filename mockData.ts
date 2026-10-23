@@ -1,14 +1,56 @@
 // Temporary data. Replace with your API response.
-import type { Category } from "@/src/features/spendingByCategory/categoryTypes";
-import type { MonthlyPoint } from "@/src/features/monthlyTrends/trendTypes";
+import type { Category } from "@/src/types/categoryTypes";
+import type { MonthlyPoint } from "@/src//types/trendTypes";
 
 export const categories: Category[] = [
-  { name: "Groceries", amount: 1250.3, percentage: 29.4, transactionCount: 15, color: "#FF6B6B", icon: "shopping-cart" },
-  { name: "Entertainment", amount: 890.2, percentage: 20.9, transactionCount: 8, color: "#4ECDC4", icon: "film" },
-  { name: "Transportation", amount: 680.45, percentage: 16.0, transactionCount: 12, color: "#45B7D1", icon: "car" },
-  { name: "Dining", amount: 520.3, percentage: 12.2, transactionCount: 9, color: "#FFC048", icon: "utensils" },
-  { name: "Shopping", amount: 450.8, percentage: 10.6, transactionCount: 6, color: "#A66CDB", icon: "shopping-bag" },
-  { name: "Utilities", amount: 458.7, percentage: 10.8, transactionCount: 3, color: "#6FB6FF", icon: "tint" },
+  {
+    name: "Groceries",
+    amount: 1250.3,
+    percentage: 29.4,
+    transactionCount: 15,
+    color: "#FF6B6B",
+    icon: "shopping-cart",
+  },
+  {
+    name: "Entertainment",
+    amount: 890.2,
+    percentage: 20.9,
+    transactionCount: 8,
+    color: "#4ECDC4",
+    icon: "film",
+  },
+  {
+    name: "Transportation",
+    amount: 680.45,
+    percentage: 16.0,
+    transactionCount: 12,
+    color: "#45B7D1",
+    icon: "car",
+  },
+  {
+    name: "Dining",
+    amount: 520.3,
+    percentage: 12.2,
+    transactionCount: 9,
+    color: "#FFC048",
+    icon: "utensils",
+  },
+  {
+    name: "Shopping",
+    amount: 450.8,
+    percentage: 10.6,
+    transactionCount: 6,
+    color: "#A66CDB",
+    icon: "shopping-bag",
+  },
+  {
+    name: "Utilities",
+    amount: 458.7,
+    percentage: 10.8,
+    transactionCount: 3,
+    color: "#6FB6FF",
+    icon: "tint",
+  },
 ];
 
 export const monthlySpending: MonthlyPoint[] = [
