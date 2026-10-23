@@ -47,7 +47,7 @@ export default function CategoryChart({
     <div
       role="img"
       aria-label="Donut chart of spending by category"
-      className="relative h-56 w-full md:w-60 md:shrink-0 xl:w-full 2xl:w-60"
+      className="relative h-56 w-full md:w-60 md:shrink-0 2xl:w-full"
     >
       <ResponsiveContainer width="100%" height="100%">
         <PieChart>
