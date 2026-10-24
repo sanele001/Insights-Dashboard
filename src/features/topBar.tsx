@@ -8,10 +8,18 @@ import PeriodSelector, {
 import ProfileMenu, {
   type Profile,
 } from "@/src/components/dashboard/profileMenu";
+import { useDashboardFilters } from "@/src/context/filters/dashboardFilters";
 
 type TopBarProps = {
   user: Profile;
   onPeriodChange?: (period: Period) => void;
+};
+
+const RANGE_TEXT: Record<Period, string> = {
+  "7d": "the last 7 days",
+  "30d": "the last 30 days",
+  "90d": "the last 90 days",
+  "1y": "the last year",
 };
 
 function getGreeting() {
@@ -22,14 +30,15 @@ function getGreeting() {
 }
 
 export default function TopBar({ user, onPeriodChange }: TopBarProps) {
-  const [period, setPeriod] = useState<Period>("30d");
+  // The period lives in the shared dashboard filters, so the Filters panel stays in sync
+  const { filters, setRange } = useDashboardFilters();
   const [greeting, setGreeting] = useState("Welcome");
 
   // Set on the client to avoid a server/client time mismatch
   useEffect(() => setGreeting(getGreeting()), []);
 
   const handlePeriod = (p: Period) => {
-    setPeriod(p);
+    setRange(p);
     onPeriodChange?.(p);
   };
 
@@ -45,12 +54,12 @@ export default function TopBar({ user, onPeriodChange }: TopBarProps) {
           {greeting}, {user.name.split(" ")[0]}
         </h1>
         <p className="text-sm text-slate-500">
-          Here&apos;s your spending overview
+          Here&apos;s your spending overview for {RANGE_TEXT[filters.range]}.
         </p>
       </div>
 
       <div className="flex items-center gap-2 sm:gap-4">
-        <PeriodSelector value={period} onChange={handlePeriod} />
+        <PeriodSelector value={filters.range} onChange={handlePeriod} />
 
         <button
           type="button"
