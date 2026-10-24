@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { FaArrowRight } from "react-icons/fa";
 import Pagination from "@/src/components/dashboard/pagination";
+import { useDashboardFilters } from "@/src/context/filters/dashboardFilters";
 import { fetchTransactions } from "@/src/lib/api/transactionsApi";
 import TransactionsTable from "@/src/components/dashboard/transactionsTable";
 import type { TransactionsResponse } from "@/src/types/transactionTypes";
@@ -11,7 +12,14 @@ import type { TransactionsResponse } from "@/src/types/transactionTypes";
 const PAGE_SIZE = 6;
 
 export default function RecentTransactions() {
-  const [page, setPage] = useState(1);
+  const { filters } = useDashboardFilters();
+  const filterKey = `${filters.range}|${filters.category ?? ""}`;
+
+  // The page number belongs to one set of filters; new filters mean back to page 1
+  const [pageState, setPageState] = useState({ key: filterKey, page: 1 });
+  const page = pageState.key === filterKey ? pageState.page : 1;
+  const setPage = (p: number) => setPageState({ key: filterKey, page: p });
+
   const [data, setData] = useState<TransactionsResponse | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
@@ -22,7 +30,12 @@ export default function RecentTransactions() {
     setLoading(true);
     setError(false);
 
-    fetchTransactions({ offset: (page - 1) * PAGE_SIZE, limit: PAGE_SIZE })
+    fetchTransactions({
+      offset: (page - 1) * PAGE_SIZE,
+      limit: PAGE_SIZE,
+      category: filters.category,
+      range: filters.range,
+    })
       .then((res) => !cancelled && setData(res))
       .catch(() => !cancelled && setError(true))
       .finally(() => !cancelled && setLoading(false));
@@ -30,7 +43,7 @@ export default function RecentTransactions() {
     return () => {
       cancelled = true; // ignore responses from pages the user already left
     };
-  }, [page, attempt]);
+  }, [page, attempt, filters.category, filters.range]);
 
   const meta = data?.pagination;
   const totalPages = meta ? Math.max(1, Math.ceil(meta.total / meta.limit)) : 1;
