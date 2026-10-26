@@ -3,9 +3,12 @@
 import { useCategories } from "@/src/lib/services/category";
 import SpendingByCategory from "@/src/features/spendingByCategory";
 import MonthlyTrends from "@/src/features/monthlyTrends";
+import { useDashboardFilters } from "@/src/context/filters/dashboardFilters";
 
 export default function CategoryMonthlySpending() {
-  const { categories, monthlySpending, isLoading, isError } = useCategories();
+  const { filters } = useDashboardFilters();
+  const { categories, monthlySpending, isLoading, isError } =
+    useCategories(filters);
 
   return (
     <div
