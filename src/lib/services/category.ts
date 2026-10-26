@@ -2,6 +2,7 @@
 
 import type { Category } from "@/src/types/categoryTypes";
 import type { MonthlyPoint } from "@/src/types/trendTypes";
+import type { DashboardFilters } from "@/src/context/filters/dashboardFilters";
 import useSWR from "swr";
 
 type CategoriesResponse = {
@@ -9,15 +10,20 @@ type CategoriesResponse = {
   monthlySpending: MonthlyPoint[];
 };
 
-const fetchCategories = async (): Promise<CategoriesResponse> => {
-  const res = await fetch("/api/categories");
+const fetchCategories = async (url: string): Promise<CategoriesResponse> => {
+  const res = await fetch(url);
   if (!res.ok) throw new Error("Failed to load categories");
   return (await res.json()) as CategoriesResponse;
 };
 
-export function useCategories() {
+export function useCategories(filters: DashboardFilters) {
+  const params = new URLSearchParams();
+  if (filters.category) params.set("category", filters.category);
+  const query = params.toString();
+  const url = query ? `/api/categories?${query}` : "/api/categories";
+
   const { data, error, isLoading } = useSWR<CategoriesResponse>(
-    "/api/categories",
+    url,
     fetchCategories,
   );
 
@@ -25,6 +31,6 @@ export function useCategories() {
     categories: data?.categories ?? [],
     monthlySpending: data?.monthlySpending ?? [],
     isLoading,
-    isError: error,
+    isError: Boolean(error),
   };
 }

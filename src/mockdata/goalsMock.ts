@@ -1,5 +1,5 @@
 // Temporary data. Replace with your API response.
-import type { Goal } from "@/src/features/spendingGoals/goalTypes";
+import type { Goal } from "@/src/types/goalTypes";
 
 export const goals: Goal[] = [
   {

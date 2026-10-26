@@ -1,11 +1,12 @@
 // Temporary data. Replace with your API response.
-import type { Insight } from "@/src/features/spendingInsights/insightTypes";
+import type { Insight } from "@/src/types/insightTypes";
 
 export const insights: Insight[] = [
   {
     id: "insight_001",
     title: "You spent 12.5% more",
-    description: "Your spending increased by 12.5% compared to the previous 30 days.",
+    description:
+      "Your spending increased by 12.5% compared to the previous 30 days.",
     icon: "arrow-up",
     color: "#22C55E",
   },
@@ -26,7 +27,8 @@ export const insights: Insight[] = [
   {
     id: "insight_004",
     title: "Groceries are close to limit",
-    description: "You've used 96.7% of your groceries budget. Consider reducing spending.",
+    description:
+      "You've used 96.7% of your groceries budget. Consider reducing spending.",
     icon: "exclamation-triangle",
     color: "#F59E0B",
   },

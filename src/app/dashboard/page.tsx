@@ -24,8 +24,6 @@ const user = {
   currency: "ZAR",
 };
 
-debugger;
-
 export default function DashboardPage() {
   return (
     <DashboardLayout>

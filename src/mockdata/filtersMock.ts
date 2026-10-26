@@ -1,5 +1,5 @@
 // Temporary data. Replace with GET /api/customers/{customerId}/filters
-import type { FiltersData } from "@/src/features/filters/filterTypes";
+import type { FiltersData } from "@/src/types/filterTypes";
 
 export const filtersData: FiltersData = {
   categories: [

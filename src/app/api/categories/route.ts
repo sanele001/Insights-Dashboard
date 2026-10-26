@@ -1,17 +1,22 @@
 import type { Category } from "@/src/types/categoryTypes";
-import type { MonthlyPoint } from "@/src//types/trendTypes";
+import type { MonthlyPoint } from "@/src/types/trendTypes";
 
 /**
- * Returns category spending totals and monthly spending data.
+ * Returns category spending totals filtered by category, alongside the full monthly spending series.
  *
- * @param _request - The incoming request; unused because this endpoint has no query parameters.
+ * @param request - The incoming request; supports an optional `category` query parameter.
  * @returns A JSON response containing the categories and monthlySpending arrays.
  */
-export async function GET(_request: Request) {
+export async function GET(request: Request) {
+  const { searchParams } = new URL(request.url);
+  const category = searchParams.get("category");
+
   return new Response(
     JSON.stringify({
-      categories: categories,
-      monthlySpending: monthlySpending,
+      categories: category
+        ? categories.filter((item) => item.name === category)
+        : categories,
+      monthlySpending,
     }),
     {
       status: 200,
