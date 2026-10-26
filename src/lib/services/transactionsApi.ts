@@ -56,7 +56,6 @@ export async function fetchTransactions({
   category?: string | null;
   range?: string;
 }): Promise<TransactionsResponse> {
-  await new Promise((resolve) => setTimeout(resolve, 300));
   await loadTransactions();
 
   const source = category ? ALL.filter((t) => t.category === category) : ALL;
