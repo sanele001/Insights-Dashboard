@@ -1,6 +1,5 @@
 import SpendingSummary from "@/src/features/spendingSummary";
-import SpendingByCategory from "@/src/features/spendingByCategory";
-import MonthlyTrends from "@/src/features/monthlyTrends";
+import CategoryMonthlySpending from "@/src/features/categoryMonthlySpending";
 import SpendingGoals from "@/src/features/spendingGoals";
 import RecentTransactions from "@/src/features/recentTransactions";
 import SpendingInsights from "@/src/features/spendingInsights";
@@ -9,7 +8,7 @@ import DashboardLayout from "@/src/components/layout/dashBoardLayout";
 import SideMenu from "@/src/components/nav/sideMenu";
 import TopBar from "@/src/features/topBar";
 import { DashboardFiltersProvider } from "@/src/context/filters/dashboardFilters";
-import { categories, monthlySpending } from "@/src/mockdata/mockData";
+
 import { goals } from "@/src/mockdata/goalsMock";
 import { insights } from "@/src/mockdata/insightsMock";
 import { filtersData } from "@/src/mockdata/filtersMock";
@@ -25,6 +24,8 @@ const user = {
   currency: "ZAR",
 };
 
+debugger;
+
 export default function DashboardPage() {
   return (
     <DashboardLayout>
@@ -39,10 +40,7 @@ export default function DashboardPage() {
             <div className="min-w-0 space-y-6">
               <SpendingSummary />
 
-              <div className="grid grid-cols-1 gap-6 2xl:grid-cols-2">
-                <SpendingByCategory categories={categories} />
-                <MonthlyTrends data={monthlySpending} />
-              </div>
+              <CategoryMonthlySpending />
 
               {/* Goals 1/3, transactions 2/3 on 2xl; stacked below that */}
               <div className="grid grid-cols-1 gap-6 2xl:grid-cols-[minmax(0,1fr)_minmax(0,2fr)]">
