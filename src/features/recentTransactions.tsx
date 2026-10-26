@@ -5,7 +5,7 @@ import Link from "next/link";
 import { FaArrowRight } from "react-icons/fa";
 import Pagination from "@/src/components/dashboard/pagination";
 import { useDashboardFilters } from "@/src/context/filters/dashboardFilters";
-import { fetchTransactions } from "@/src/lib/api/transactionsApi";
+import { fetchTransactions } from "@/src/lib/services/transactionsApi";
 import TransactionsTable from "@/src/components/dashboard/transactionsTable";
 import type { TransactionsResponse } from "@/src/types/transactionTypes";
 
