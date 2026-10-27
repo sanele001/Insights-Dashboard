@@ -8,8 +8,6 @@ import DashboardLayout from "@/src/components/layout/dashBoardLayout";
 import SideMenu from "@/src/components/nav/sideMenu";
 import TopBar from "@/src/features/topBar";
 import { DashboardFiltersProvider } from "@/src/context/filters/dashboardFilters";
-
-import { insights } from "@/src/mockdata/insightsMock";
 import { filtersData } from "@/src/mockdata/filtersMock";
 
 // Replace with real data from your API / session
@@ -47,7 +45,7 @@ export default function DashboardPage() {
             </div>
 
             <aside className="grid grid-cols-1 content-start gap-6 md:grid-cols-2 xl:grid-cols-1">
-              <SpendingInsights insights={insights} />
+              <SpendingInsights />
               <FiltersPanel data={filtersData} />
             </aside>
           </div>
