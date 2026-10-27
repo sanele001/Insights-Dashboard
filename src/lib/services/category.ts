@@ -3,6 +3,7 @@
 import type { Category } from "@/src/types/categoryTypes";
 import type { MonthlyPoint } from "@/src/types/trendTypes";
 import type { DashboardFilters } from "@/src/context/filters/dashboardFilters";
+import { logger } from "@/src/lib/utils/logger";
 import useSWR from "swr";
 
 type CategoriesResponse = {
@@ -22,9 +23,14 @@ export function useCategories(filters: DashboardFilters) {
   const query = params.toString();
   const url = query ? `/api/categories?${query}` : "/api/categories";
 
-  const { data, error, isLoading } = useSWR<CategoriesResponse>(
+  const { data, error, isLoading, mutate } = useSWR<CategoriesResponse>(
     url,
     fetchCategories,
+    {
+      onError: (requestError: unknown) => {
+        logger.error(requestError, "Failed to load category spending data");
+      },
+    },
   );
 
   return {
@@ -32,5 +38,6 @@ export function useCategories(filters: DashboardFilters) {
     monthlySpending: data?.monthlySpending ?? [],
     isLoading,
     isError: Boolean(error),
+    retry: () => void mutate(),
   };
 }

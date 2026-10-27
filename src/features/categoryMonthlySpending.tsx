@@ -7,7 +7,7 @@ import { useDashboardFilters } from "@/src/context/filters/dashboardFilters";
 
 export default function CategoryMonthlySpending() {
   const { filters } = useDashboardFilters();
-  const { categories, monthlySpending, isLoading, isError } =
+  const { categories, monthlySpending, isLoading, isError, retry } =
     useCategories(filters);
 
   return (
@@ -16,9 +16,19 @@ export default function CategoryMonthlySpending() {
       aria-busy={isLoading}
     >
       {isError ? (
-        <p className="col-span-full rounded-2xl bg-white p-6 text-sm text-red-600 shadow-sm">
-          Couldn&apos;t load category and monthly spending data.
-        </p>
+        <div
+          role="alert"
+          className="col-span-full rounded-2xl bg-white p-6 text-center text-sm text-red-600 shadow-sm"
+        >
+          <p>Couldn&apos;t load category and monthly spending data.</p>
+          <button
+            type="button"
+            onClick={retry}
+            className="mt-2 font-medium text-blue-600 hover:underline"
+          >
+            Try again
+          </button>
+        </div>
       ) : isLoading ? (
         <>
           <div
