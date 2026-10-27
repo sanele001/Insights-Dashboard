@@ -1,11 +1,13 @@
 # Customer Spending Insights Dashboard API Endpoints
 
 ## 1. Customer Profile
+
 ```
 GET /api/customers/{customerId}/profile
 ```
 
 **Response:**
+
 ```json
 {
   "customerId": "12345",
@@ -13,20 +15,23 @@ GET /api/customers/{customerId}/profile
   "email": "john.doe@email.com",
   "joinDate": "2023-01-15",
   "accountType": "premium",
-  "totalSpent": 15420.50,
+  "totalSpent": 15420.5,
   "currency": "ZAR"
 }
 ```
 
 ## 2. Spending Summary
+
 ```
 GET /api/customers/{customerId}/spending/summary?period={period}
 ```
 
 **Query Parameters:**
+
 - `period`: `7d`, `30d`, `90d`, `1y` (default: `30d`)
 
 **Response:**
+
 ```json
 {
   "period": "30d",
@@ -42,16 +47,19 @@ GET /api/customers/{customerId}/spending/summary?period={period}
 ```
 
 ## 3. Spending by Category (with Filtering)
+
 ```
 GET /api/customers/{customerId}/spending/categories?period={period}&startDate={startDate}&endDate={endDate}
 ```
 
 **Query Parameters:**
+
 - `period`: `7d`, `30d`, `90d`, `1y` (default: `30d`) - Quick period selection
 - `startDate`: `YYYY-MM-DD` format - Custom date range start (optional)
 - `endDate`: `YYYY-MM-DD` format - Custom date range end (optional)
 
 **Response:**
+
 ```json
 {
   "dateRange": {
@@ -62,7 +70,7 @@ GET /api/customers/{customerId}/spending/categories?period={period}&startDate={s
   "categories": [
     {
       "name": "Groceries",
-      "amount": 1250.30,
+      "amount": 1250.3,
       "percentage": 29.4,
       "transactionCount": 15,
       "color": "#FF6B6B",
@@ -70,7 +78,7 @@ GET /api/customers/{customerId}/spending/categories?period={period}&startDate={s
     },
     {
       "name": "Entertainment",
-      "amount": 890.20,
+      "amount": 890.2,
       "percentage": 20.9,
       "transactionCount": 8,
       "color": "#4ECDC4",
@@ -86,7 +94,7 @@ GET /api/customers/{customerId}/spending/categories?period={period}&startDate={s
     },
     {
       "name": "Dining",
-      "amount": 520.30,
+      "amount": 520.3,
       "percentage": 12.2,
       "transactionCount": 9,
       "color": "#F7DC6F",
@@ -94,7 +102,7 @@ GET /api/customers/{customerId}/spending/categories?period={period}&startDate={s
     },
     {
       "name": "Shopping",
-      "amount": 450.80,
+      "amount": 450.8,
       "percentage": 10.6,
       "transactionCount": 6,
       "color": "#BB8FCE",
@@ -102,7 +110,7 @@ GET /api/customers/{customerId}/spending/categories?period={period}&startDate={s
     },
     {
       "name": "Utilities",
-      "amount": 458.70,
+      "amount": 458.7,
       "percentage": 10.8,
       "transactionCount": 3,
       "color": "#85C1E9",
@@ -113,14 +121,17 @@ GET /api/customers/{customerId}/spending/categories?period={period}&startDate={s
 ```
 
 ## 4. Monthly Spending Trends
+
 ```
 GET /api/customers/{customerId}/spending/trends?months={months}
 ```
 
 **Query Parameters:**
+
 - `months`: number of months to retrieve (default: 12, max: 24)
 
 **Response:**
+
 ```json
 {
   "trends": [
@@ -131,14 +142,14 @@ GET /api/customers/{customerId}/spending/trends?months={months}
       "averageTransaction": 92.62
     },
     {
-      "month": "2024-02", 
-      "totalSpent": 4150.80,
+      "month": "2024-02",
+      "totalSpent": 4150.8,
       "transactionCount": 38,
       "averageTransaction": 109.23
     },
     {
       "month": "2024-03",
-      "totalSpent": 3750.60,
+      "totalSpent": 3750.6,
       "transactionCount": 45,
       "averageTransaction": 83.35
     },
@@ -146,11 +157,11 @@ GET /api/customers/{customerId}/spending/trends?months={months}
       "month": "2024-04",
       "totalSpent": 4200.45,
       "transactionCount": 39,
-      "averageTransaction": 107.70
+      "averageTransaction": 107.7
     },
     {
       "month": "2024-05",
-      "totalSpent": 3980.30,
+      "totalSpent": 3980.3,
       "transactionCount": 44,
       "averageTransaction": 90.46
     },
@@ -165,11 +176,13 @@ GET /api/customers/{customerId}/spending/trends?months={months}
 ```
 
 ## 5. Transactions with Filtering
+
 ```
 GET /api/customers/{customerId}/transactions?limit={limit}&offset={offset}&category={category}&startDate={startDate}&endDate={endDate}&sortBy={sortBy}
 ```
 
 **Query Parameters:**
+
 - `limit`: number of transactions (default: 20, max: 100)
 - `offset`: pagination offset (default: 0)
 - `category`: filter by specific category (optional)
@@ -178,6 +191,7 @@ GET /api/customers/{customerId}/transactions?limit={limit}&offset={offset}&categ
 - `sortBy`: `date_desc`, `date_asc`, `amount_desc`, `amount_asc` (default: `date_desc`)
 
 **Response:**
+
 ```json
 {
   "transactions": [
@@ -186,7 +200,7 @@ GET /api/customers/{customerId}/transactions?limit={limit}&offset={offset}&categ
       "date": "2024-09-16T14:30:00Z",
       "merchant": "Pick n Pay",
       "category": "Groceries",
-      "amount": 245.80,
+      "amount": 245.8,
       "description": "Weekly groceries",
       "paymentMethod": "Credit Card",
       "icon": "shopping-cart",
@@ -197,7 +211,7 @@ GET /api/customers/{customerId}/transactions?limit={limit}&offset={offset}&categ
       "date": "2024-09-15T10:15:00Z",
       "merchant": "Netflix",
       "category": "Entertainment",
-      "amount": 199.00,
+      "amount": 199.0,
       "description": "Monthly subscription",
       "paymentMethod": "Debit Order",
       "icon": "film",
@@ -214,19 +228,21 @@ GET /api/customers/{customerId}/transactions?limit={limit}&offset={offset}&categ
 ```
 
 ## 6. Spending Goals
+
 ```
 GET /api/customers/{customerId}/goals
 ```
 
 **Response:**
+
 ```json
 {
   "goals": [
     {
       "id": "goal_001",
       "category": "Entertainment",
-      "monthlyBudget": 1000.00,
-      "currentSpent": 650.30,
+      "monthlyBudget": 1000.0,
+      "currentSpent": 650.3,
       "percentageUsed": 65.03,
       "daysRemaining": 12,
       "status": "on_track"
@@ -234,8 +250,8 @@ GET /api/customers/{customerId}/goals
     {
       "id": "goal_002",
       "category": "Groceries",
-      "monthlyBudget": 1500.00,
-      "currentSpent": 1450.80,
+      "monthlyBudget": 1500.0,
+      "currentSpent": 1450.8,
       "percentageUsed": 96.72,
       "daysRemaining": 12,
       "status": "warning"
@@ -245,11 +261,13 @@ GET /api/customers/{customerId}/goals
 ```
 
 ## 7. Available Categories and Filters
+
 ```
 GET /api/customers/{customerId}/filters
 ```
 
 **Response:**
+
 ```json
 {
   "categories": [
@@ -260,7 +278,7 @@ GET /api/customers/{customerId}/filters
     },
     {
       "name": "Entertainment",
-      "color": "#4ECDC4", 
+      "color": "#4ECDC4",
       "icon": "film"
     },
     {
@@ -290,7 +308,7 @@ GET /api/customers/{customerId}/filters
       "value": "7d"
     },
     {
-      "label": "Last 30 days", 
+      "label": "Last 30 days",
       "value": "30d"
     },
     {
@@ -303,3 +321,4 @@ GET /api/customers/{customerId}/filters
     }
   ]
 }
+```

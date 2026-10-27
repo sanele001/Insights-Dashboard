@@ -36,3 +36,11 @@ export interface StatCardProps {
   iconBgColor?: string;
   iconColor?: string;
 }
+export interface Category {
+  name: string;
+  amount: number;
+  percentage: number;
+  transactionCount: number;
+  color: string;
+  icon: string; // e.g., "shopping-cart", "film", "car"
+}
