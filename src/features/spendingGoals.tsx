@@ -1,9 +1,11 @@
+"use client";
 import Link from "next/link";
 import { FaArrowRight } from "react-icons/fa";
 import GoalCard from "@/src/components/dashboard/goalCard";
-import type { Goal } from "@/src/types/goalTypes";
+import { useFetchGoals } from "@/src/lib/services/goals";
 
-export default function SpendingGoals({ goals }: { goals: Goal[] }) {
+export default function SpendingGoals() {
+  const { goals } = useFetchGoals();
   return (
     <section className="min-w-0 rounded-2xl bg-white p-4 shadow-sm sm:p-6">
       <div className="mb-4 flex items-center justify-between gap-3">

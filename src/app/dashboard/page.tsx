@@ -9,7 +9,6 @@ import SideMenu from "@/src/components/nav/sideMenu";
 import TopBar from "@/src/features/topBar";
 import { DashboardFiltersProvider } from "@/src/context/filters/dashboardFilters";
 
-import { goals } from "@/src/mockdata/goalsMock";
 import { insights } from "@/src/mockdata/insightsMock";
 import { filtersData } from "@/src/mockdata/filtersMock";
 
@@ -42,7 +41,7 @@ export default function DashboardPage() {
 
               {/* Goals 1/3, transactions 2/3 on 2xl; stacked below that */}
               <div className="grid grid-cols-1 gap-6 2xl:grid-cols-[minmax(0,1fr)_minmax(0,2fr)]">
-                <SpendingGoals goals={goals} />
+                <SpendingGoals />
                 <RecentTransactions />
               </div>
             </div>
