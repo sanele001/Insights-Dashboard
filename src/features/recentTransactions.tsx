@@ -6,6 +6,7 @@ import { FaArrowRight } from "react-icons/fa";
 import Pagination from "@/src/components/dashboard/pagination";
 import { useDashboardFilters } from "@/src/context/filters/dashboardFilters";
 import { fetchTransactions } from "@/src/lib/services/transactionsApi";
+import { logger } from "@/src/lib/utils/logger";
 import TransactionsTable from "@/src/components/dashboard/transactionsTable";
 import type { TransactionsResponse } from "@/src/types/transactionTypes";
 
@@ -37,7 +38,12 @@ export default function RecentTransactions() {
       range: filters.range,
     })
       .then((res) => !cancelled && setData(res))
-      .catch(() => !cancelled && setError(true))
+      .catch((requestError: unknown) => {
+        if (cancelled) return;
+
+        logger.error(requestError, "Failed to load recent transactions");
+        setError(true);
+      })
       .finally(() => !cancelled && setLoading(false));
 
     return () => {
@@ -65,7 +71,10 @@ export default function RecentTransactions() {
       </div>
 
       {error ? (
-        <div className="py-10 text-center text-sm text-slate-600">
+        <div
+          role="alert"
+          className="py-10 text-center text-sm text-slate-600"
+        >
           <p>Couldn&apos;t load transactions.</p>
           <button
             type="button"

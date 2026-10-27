@@ -1,4 +1,4 @@
-import { render, screen } from "@testing-library/react";
+import { fireEvent, render, screen } from "@testing-library/react";
 import CategoryMonthlySpending from "@/src/features/categoryMonthlySpending";
 import {
   DashboardFiltersProvider,
@@ -48,6 +48,7 @@ describe("CategoryMonthlySpending", () => {
       monthlySpending: [],
       isLoading: true,
       isError: false,
+      retry: jest.fn(),
     });
 
     const { container } = renderComponent();
@@ -61,11 +62,13 @@ describe("CategoryMonthlySpending", () => {
   });
 
   it("shows an error message when the data request fails", () => {
+    const retry = jest.fn();
     mockedUseCategories.mockReturnValue({
       categories: [],
       monthlySpending: [],
       isLoading: false,
       isError: true,
+      retry,
     });
 
     renderComponent();
@@ -73,6 +76,12 @@ describe("CategoryMonthlySpending", () => {
     expect(
       screen.getByText("Couldn't load category and monthly spending data."),
     ).toBeInTheDocument();
+    expect(screen.getByRole("alert")).toBeInTheDocument();
+    expect(
+      screen.getByRole("button", { name: "Try again" }),
+    ).toBeInTheDocument();
+    fireEvent.click(screen.getByRole("button", { name: "Try again" }));
+    expect(retry).toHaveBeenCalledTimes(1);
     expect(
       screen.queryByText("Loading category spending…"),
     ).not.toBeInTheDocument();
@@ -84,6 +93,7 @@ describe("CategoryMonthlySpending", () => {
       monthlySpending,
       isLoading: false,
       isError: false,
+      retry: jest.fn(),
     });
 
     renderComponent();

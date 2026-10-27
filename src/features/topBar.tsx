@@ -9,6 +9,7 @@ import ProfileMenu, {
   type Profile,
 } from "@/src/components/dashboard/profileMenu";
 import { useDashboardFilters } from "@/src/context/filters/dashboardFilters";
+import { logger } from "@/src/lib/utils/logger";
 
 type TopBarProps = {
   user: Profile;
@@ -44,7 +45,7 @@ export default function TopBar({ user, onPeriodChange }: TopBarProps) {
 
   const handleLogout = () => {
     // TODO: call your logout endpoint / clear session, then redirect to /login
-    console.log("logout");
+    logger.log("logout");
   };
 
   return (
