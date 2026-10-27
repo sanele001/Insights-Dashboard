@@ -1,13 +1,12 @@
+"use client";
 import Link from "next/link";
 import { FaArrowRight, FaLightbulb } from "react-icons/fa";
 import InsightCard from "@/src/components/dashboard/insightCard";
+import { useInsights } from "@/src/lib/services/insights";
 import type { Insight } from "@/src/types/insightTypes";
 
-export default function SpendingInsights({
-  insights,
-}: {
-  insights: Insight[];
-}) {
+export default function SpendingInsights() {
+  const { insights } = useInsights();
   return (
     <section className="min-w-0 rounded-2xl bg-white p-4 shadow-sm sm:p-6">
       <div className="mb-4 flex items-center justify-between gap-3">
