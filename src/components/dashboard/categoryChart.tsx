@@ -58,7 +58,7 @@ export default function CategoryChart({
             innerRadius="62%"
             outerRadius="95%"
             paddingAngle={2}
-            stroke="#fff"
+            stroke="var(--surface)"
             strokeWidth={2}
             labelLine={false}
             label={renderLabel}
@@ -73,10 +73,10 @@ export default function CategoryChart({
 
       {/* Centre text */}
       <div className="pointer-events-none absolute inset-0 flex flex-col items-center justify-center">
-        <span className="text-base font-bold text-slate-900 sm:text-lg">
+        <span className="text-base font-bold text-primary sm:text-lg">
           {formatCurrency(total)}
         </span>
-        <span className="text-xs text-slate-500">Total Spent</span>
+        <span className="text-xs text-muted">Total Spent</span>
       </div>
     </div>
   );
