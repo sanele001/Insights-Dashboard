@@ -57,24 +57,15 @@ export default function RecentTransactions() {
   const to = meta ? meta.offset + (data?.transactions.length ?? 0) : 0;
 
   return (
-    <section className="min-w-0 rounded-2xl bg-white p-4 shadow-sm sm:p-6">
+    <section className="min-w-0 rounded-2xl bg-surface p-4 shadow-sm sm:p-6">
       <div className="mb-2 flex items-center justify-between gap-3">
-        <h2 className="text-lg font-bold text-slate-900 sm:text-xl">
+        <h2 className="text-lg font-bold text-primary sm:text-xl">
           Recent Transactions
         </h2>
-        <Link
-          href="/transactions"
-          className="flex shrink-0 items-center gap-1 text-sm font-medium text-blue-600 hover:underline"
-        >
-          View all <FaArrowRight aria-hidden className="h-3 w-3" />
-        </Link>
       </div>
 
       {error ? (
-        <div
-          role="alert"
-          className="py-10 text-center text-sm text-slate-600"
-        >
+        <div role="alert" className="py-10 text-center text-sm text-secondary">
           <p>Couldn&apos;t load transactions.</p>
           <button
             type="button"
@@ -93,7 +84,7 @@ export default function RecentTransactions() {
           {Array.from({ length: PAGE_SIZE }, (_, i) => (
             <div
               key={i}
-              className="h-10 animate-pulse rounded-lg bg-slate-100"
+              className="h-10 animate-pulse rounded-lg bg-surface-muted"
             />
           ))}
         </div>
@@ -110,7 +101,7 @@ export default function RecentTransactions() {
 
       {meta && !error && (
         <div className="mt-4 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-          <p className="text-sm text-slate-500" aria-live="polite">
+          <p className="text-sm text-muted" aria-live="polite">
             Showing {from} – {to} of {meta.total} transactions
           </p>
           <Pagination

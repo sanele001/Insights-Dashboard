@@ -29,7 +29,6 @@ export default function SpendingSummary() {
   };
   return (
     <div className="flex min-w-0 flex-1 flex-col gap-4">
-      <h2 className="text-lg font-semibold">Spending Summary</h2>
       <SpendingSummaryGrid>
         <StatCard
           title="Total Spent"
