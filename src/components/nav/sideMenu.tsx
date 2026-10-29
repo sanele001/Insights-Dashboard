@@ -16,8 +16,8 @@ function MenuContent({ onNavigate }: { onNavigate?: () => void }) {
   const pathname = usePathname();
 
   return (
-    <div className="flex h-full flex-col bg-slate-900 text-slate-200">
-      <div className="px-6 py-6 text-xl font-bold tracking-wide text-white">
+    <div className="flex h-full flex-col bg-sidebar-background text-sidebar-foreground">
+      <div className="px-6 py-6 text-xl font-bold tracking-wide text-sidebar-foreground">
         Capitec Bank
       </div>
 
@@ -34,7 +34,7 @@ function MenuContent({ onNavigate }: { onNavigate?: () => void }) {
               className={`flex items-center gap-3 rounded-lg px-3 py-3 text-sm font-medium transition-colors ${
                 active
                   ? "bg-blue-700 text-white"
-                  : "hover:bg-slate-800 hover:text-white"
+                  : "hover:bg-sidebar-hover hover:text-white"
               }`}
             >
               <Icon className="h-5 w-5 shrink-0" />
@@ -70,17 +70,17 @@ export default function SideMenu() {
       </aside>
 
       {/* Mobile / tablet: top bar with hamburger */}
-      <header className="fixed inset-x-0 top-0 z-30 flex h-14 items-center bg-slate-900 px-4 text-white lg:hidden">
+      <header className="fixed inset-x-0 top-0 z-30 flex h-14 items-center bg-sidebar-background px-4 text-white lg:hidden">
         <button
           type="button"
           onClick={() => setOpen(true)}
           aria-label="Open menu"
           aria-expanded={open}
-          className="rounded-md p-2 hover:bg-slate-800"
+          className="rounded-md p-2 hover:bg-sidebar-hover"
         >
           <FaBars className="h-6 w-6" />
         </button>
-        <span className="ml-3 font-bold">Your Bank</span>
+        <span className="ml-3 font-bold">Capitec Bank</span>
       </header>
 
       {/* Mobile drawer + backdrop */}
@@ -105,7 +105,7 @@ export default function SideMenu() {
             type="button"
             onClick={() => setOpen(false)}
             aria-label="Close menu"
-            className="absolute right-2 top-3 rounded-md p-2 text-slate-300 hover:bg-slate-800"
+            className="absolute right-2 top-3 rounded-md p-2 text-sidebar-foreground hover:bg-sidebar-hover"
           >
             <FaTimes className="h-5 w-5" />
           </button>
