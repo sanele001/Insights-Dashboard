@@ -25,7 +25,7 @@ export default function CategoryTable({
           <th scope="col">Share</th>
         </tr>
       </thead>
-      <tbody className="divide-y divide-slate-100">
+      <tbody className="divide-y divide-border-subtle">
         {categories.map((c) => (
           <tr key={c.name}>
             <td className="py-3 pr-3">
@@ -37,8 +37,8 @@ export default function CategoryTable({
                   <CategoryIcon name={c.icon} />
                 </span>
                 <div>
-                  <p className="text-sm font-medium text-slate-800">{c.name}</p>
-                  <p className="text-xs text-slate-500 sm:hidden">
+                  <p className="text-sm font-medium text-secondary">{c.name}</p>
+                  <p className="text-xs text-muted sm:hidden">
                     {transactionsLabel(c.transactionCount)} ·{" "}
                     {c.percentage.toFixed(1)}%
                   </p>
@@ -47,15 +47,15 @@ export default function CategoryTable({
             </td>
 
             <td className="whitespace-nowrap py-3 text-right sm:text-left">
-              <p className="text-sm font-semibold text-slate-900">
+              <p className="text-sm font-semibold text-primary">
                 {formatCurrency(c.amount)}
               </p>
-              <p className="hidden text-xs text-slate-500 sm:block">
+              <p className="hidden text-xs text-muted sm:block">
                 {transactionsLabel(c.transactionCount)}
               </p>
             </td>
 
-            <td className="hidden py-3 pl-3 text-right text-sm font-medium text-slate-600 sm:table-cell">
+            <td className="hidden py-3 pl-3 text-right text-sm font-medium text-secondary sm:table-cell">
               {c.percentage.toFixed(1)}%
             </td>
           </tr>

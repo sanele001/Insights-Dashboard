@@ -8,24 +8,18 @@ import type { Insight } from "@/src/types/insightTypes";
 export default function SpendingInsights() {
   const { insights } = useInsights();
   return (
-    <section className="min-w-0 rounded-2xl bg-white p-4 shadow-sm sm:p-6">
+    <section className="min-w-0 rounded-2xl bg-surface p-4 shadow-sm sm:p-6">
       <div className="mb-4 flex items-center justify-between gap-3">
-        <h2 className="flex items-center gap-3 text-lg font-bold text-slate-900">
+        <h2 className="flex items-center gap-3 text-lg font-bold text-primary">
           <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-amber-100 text-amber-500">
             <FaLightbulb aria-hidden />
           </span>
           Spending Insights
         </h2>
-        <Link
-          href="/spending-insights"
-          className="flex shrink-0 items-center gap-1 text-sm font-medium text-blue-600 hover:underline"
-        >
-          View all <FaArrowRight aria-hidden className="h-3 w-3" />
-        </Link>
       </div>
 
       {insights.length === 0 ? (
-        <p className="py-6 text-center text-sm text-slate-500">
+        <p className="py-6 text-center text-sm text-muted">
           No insights yet. Check back after a few more transactions.
         </p>
       ) : (

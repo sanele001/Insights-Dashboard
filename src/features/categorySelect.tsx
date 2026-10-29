@@ -57,7 +57,7 @@ export default function CategorySelect({
     `flex w-full items-center gap-2 rounded-md px-2 py-2 text-left text-sm ${
       active
         ? "bg-blue-50 font-medium text-blue-700"
-        : "text-slate-700 hover:bg-slate-50"
+        : "text-secondary hover:bg-surface-hover"
     }`;
 
   return (
@@ -69,7 +69,7 @@ export default function CategorySelect({
         aria-expanded={open}
         aria-controls={listId}
         onClick={() => setOpen((o) => !o)}
-        className="flex w-full items-center justify-between gap-2 rounded-lg border border-slate-200 bg-white px-3 py-2.5 text-sm text-slate-700 shadow-sm outline-none focus:ring-2 focus:ring-blue-500"
+        className="flex w-full items-center justify-between gap-2 rounded-lg border border-border bg-surface px-3 py-2.5 text-sm text-secondary shadow-sm outline-none focus:ring-2 focus:ring-blue-500"
       >
         <span className="flex min-w-0 items-center gap-2">
           {selected && <Badge category={selected} />}
@@ -79,7 +79,7 @@ export default function CategorySelect({
         </span>
         <FaChevronDown
           aria-hidden
-          className={`h-3 w-3 shrink-0 text-slate-500 transition-transform ${open ? "rotate-180" : ""}`}
+          className={`h-3 w-3 shrink-0 text-muted transition-transform ${open ? "rotate-180" : ""}`}
         />
       </button>
 
@@ -87,7 +87,7 @@ export default function CategorySelect({
         <ul
           id={listId}
           role="listbox"
-          className="absolute z-20 mt-1 max-h-64 w-full overflow-auto rounded-lg border border-slate-200 bg-white p-1 shadow-lg"
+          className="absolute z-20 mt-1 max-h-64 w-full overflow-auto rounded-lg border border-border bg-surface p-1 shadow-lg"
         >
           <li role="presentation">
             <button
