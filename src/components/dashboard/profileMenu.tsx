@@ -18,8 +18,8 @@ function initials(name: string) {
 function Row({ label, value }: { label: string; value: string }) {
   return (
     <div className="flex items-center justify-between gap-4 py-2 text-sm">
-      <dt className="text-slate-500">{label}</dt>
-      <dd className="truncate font-medium capitalize text-slate-800">
+      <dt className="text-muted">{label}</dt>
+      <dd className="truncate font-medium capitalize text-secondary">
         {value}
       </dd>
     </div>
@@ -70,22 +70,22 @@ export default function ProfileMenu({
         onClick={() => setOpen((o) => !o)}
         aria-haspopup="menu"
         aria-expanded={open}
-        className="flex items-center gap-3 rounded-lg p-1.5 text-left hover:bg-slate-100"
+        className="flex items-center gap-3 rounded-lg p-1.5 text-left hover:bg-surface-hover"
       >
-        <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-slate-900 text-sm font-semibold text-white">
+        <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-sidebar-background text-sm font-semibold text-white">
           {initials(user.name)}
         </span>
         <span className="hidden min-w-0 sm:block">
-          <span className="block truncate text-sm font-semibold text-slate-900">
+          <span className="block truncate text-sm font-semibold text-primary">
             Hi, {firstName}
           </span>
-          <span className="block max-w-[10rem] truncate text-xs text-slate-500">
+          <span className="block max-w-[10rem] truncate text-xs text-muted">
             {user.email}
           </span>
         </span>
         <FaChevronDown
           aria-hidden
-          className={`h-3 w-3 text-slate-500 transition-transform ${
+          className={`h-3 w-3 text-muted transition-transform ${
             open ? "rotate-180" : ""
           }`}
         />
@@ -94,21 +94,21 @@ export default function ProfileMenu({
       {open && (
         <div
           role="menu"
-          className="absolute right-0 z-50 mt-2 w-72 max-w-[calc(100vw-2rem)] rounded-xl border border-slate-200 bg-white p-4 shadow-lg"
+          className="absolute right-0 z-50 mt-2 w-72 max-w-[calc(100vw-2rem)] rounded-xl border border-border bg-surface p-4 shadow-lg"
         >
           <div className="mb-2 flex items-center gap-3">
-            <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-slate-900 font-semibold text-white">
+            <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-sidebar-background font-semibold text-white">
               {initials(user.name)}
             </span>
             <div className="min-w-0">
-              <p className="truncate font-semibold text-slate-900">
+              <p className="truncate font-semibold text-primary">
                 {user.name}
               </p>
-              <p className="truncate text-xs text-slate-500">{user.email}</p>
+              <p className="truncate text-xs text-muted">{user.email}</p>
             </div>
           </div>
 
-          <dl className="divide-y divide-slate-100 border-t border-slate-100">
+          <dl className="divide-y divide-border-subtle border-t border-border-subtle">
             <Row label="Customer ID" value={user.customerId} />
             <Row label="Member since" value={joined} />
             <Row label="Account type" value={user.accountType} />

@@ -33,7 +33,7 @@ export default function Pagination({
         aria-label="Previous page"
         disabled={disabled || page <= 1}
         onClick={() => onPageChange(page - 1)}
-        className={`${baseButton} border-slate-200 text-slate-600 hover:bg-slate-50`}
+        className={`${baseButton} border-border text-secondary hover:bg-surface-hover`}
       >
         <FaChevronLeft aria-hidden className="h-3 w-3" />
       </button>
@@ -42,7 +42,7 @@ export default function Pagination({
       <div className="hidden items-center gap-2 sm:flex">
         {getPages(page, totalPages).map((p) =>
           typeof p === "string" ? (
-            <span key={p} aria-hidden className="px-1 text-slate-400">
+            <span key={p} aria-hidden className="px-1 text-muted">
               …
             </span>
           ) : (
@@ -56,7 +56,7 @@ export default function Pagination({
               className={`${baseButton} ${
                 p === page
                   ? "border-blue-600 bg-blue-600 text-white"
-                  : "border-slate-200 text-slate-600 hover:bg-slate-50"
+                  : "border-border text-secondary hover:bg-surface-hover"
               }`}
             >
               {p}
@@ -66,7 +66,7 @@ export default function Pagination({
       </div>
 
       {/* Compact label on phones */}
-      <span className="px-2 text-sm text-slate-600 sm:hidden">
+      <span className="px-2 text-sm text-secondary sm:hidden">
         Page {page} of {totalPages}
       </span>
 
@@ -75,7 +75,7 @@ export default function Pagination({
         aria-label="Next page"
         disabled={disabled || page >= totalPages}
         onClick={() => onPageChange(page + 1)}
-        className={`${baseButton} border-slate-200 text-slate-600 hover:bg-slate-50`}
+        className={`${baseButton} border-border text-secondary hover:bg-surface-hover`}
       >
         <FaChevronRight aria-hidden className="h-3 w-3" />
       </button>
