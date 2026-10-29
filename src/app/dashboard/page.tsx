@@ -10,16 +10,7 @@ import TopBar from "@/src/features/topBar";
 import { DashboardFiltersProvider } from "@/src/context/filters/dashboardFilters";
 import { filtersData } from "@/src/mockdata/filtersMock";
 
-// Replace with real data from your API / session
-const user = {
-  customerId: "12345",
-  name: "John Doe",
-  email: "john.doe@email.com",
-  joinDate: "2023-01-15",
-  accountType: "premium",
-  totalSpent: 15420.5,
-  currency: "ZAR",
-};
+import { UserProvider } from "@/src/context/user/useContext";
 
 export default function DashboardPage() {
   return (
@@ -28,7 +19,9 @@ export default function DashboardPage() {
       {/* pt-14 leaves room for the fixed mobile top bar */}
       <main className="min-w-0 flex-1 pt-14 lg:pt-0">
         <DashboardFiltersProvider>
-          <TopBar user={user} />
+          <UserProvider>
+            <TopBar />
+          </UserProvider>
 
           {/* xl and up: main content + a 320px right column. Below xl the right column drops underneath. */}
           <div className="grid grid-cols-1 gap-6 px-4 pb-8 sm:px-6 xl:grid-cols-[minmax(0,1fr)_320px]">

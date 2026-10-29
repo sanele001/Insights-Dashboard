@@ -5,14 +5,14 @@ import { FaBell } from "react-icons/fa";
 import PeriodSelector, {
   type Period,
 } from "@/src/components/dashboard/periodSelector";
-import ProfileMenu, {
-  type Profile,
-} from "@/src/components/dashboard/profileMenu";
+import ProfileMenu from "@/src/components/dashboard/profileMenu";
 import { useDashboardFilters } from "@/src/context/filters/dashboardFilters";
 import { logger } from "@/src/lib/utils/logger";
+import { useUser } from "../context/user/useContext";
+import { useRouter } from "next/navigation";
+import { getGreeting } from "@/src/lib/utils/dateTime";
 
 type TopBarProps = {
-  user: Profile;
   onPeriodChange?: (period: Period) => void;
 };
 
@@ -23,17 +23,11 @@ const RANGE_TEXT: Record<Period, string> = {
   "1y": "the last year",
 };
 
-function getGreeting() {
-  const h = new Date().getHours();
-  if (h < 12) return "Good morning";
-  if (h < 18) return "Good afternoon";
-  return "Good evening";
-}
-
-export default function TopBar({ user, onPeriodChange }: TopBarProps) {
-  // The period lives in the shared dashboard filters, so the Filters panel stays in sync
+export default function TopBar({ onPeriodChange }: TopBarProps) {
   const { filters, setRange } = useDashboardFilters();
   const [greeting, setGreeting] = useState("Welcome");
+  const router = useRouter();
+  const { user } = useUser();
 
   // Set on the client to avoid a server/client time mismatch
   useEffect(() => setGreeting(getGreeting()), []);
@@ -44,7 +38,8 @@ export default function TopBar({ user, onPeriodChange }: TopBarProps) {
   };
 
   const handleLogout = () => {
-    // TODO: call your logout endpoint / clear session, then redirect to /login
+    // logout endpoint
+    router.push("/");
     logger.log("logout");
   };
 
@@ -52,7 +47,7 @@ export default function TopBar({ user, onPeriodChange }: TopBarProps) {
     <header className="flex flex-wrap items-center justify-between gap-4 px-4 py-5 sm:px-6">
       <div className="min-w-0">
         <h1 className="truncate text-xl font-bold text-slate-900 sm:text-2xl">
-          {greeting}, {user.name.split(" ")[0]}
+          {greeting}, {user?.name.split(" ")[0]}
         </h1>
         <p className="text-sm text-slate-500">
           Here&apos;s your spending overview for {RANGE_TEXT[filters.range]}.
@@ -73,7 +68,7 @@ export default function TopBar({ user, onPeriodChange }: TopBarProps) {
 
         <div className="hidden h-8 w-px bg-slate-200 sm:block" />
 
-        <ProfileMenu user={user} onLogout={handleLogout} />
+        {user && <ProfileMenu user={user} onLogout={handleLogout} />}
       </div>
     </header>
   );

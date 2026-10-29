@@ -2,21 +2,9 @@
 
 import { useEffect, useRef, useState } from "react";
 import { FaChevronDown, FaSignOutAlt } from "react-icons/fa";
+import { User } from "@/src/schema/user";
 
-export type Profile = {
-  customerId: string;
-  name: string;
-  email: string;
-  joinDate: string;
-  accountType: string;
-  totalSpent: number;
-  currency: string;
-};
-
-type ProfileMenuProps = {
-  user: Profile;
-  onLogout: () => void;
-};
+type ProfileMenuProps = () => void;
 
 function initials(name: string) {
   return name
@@ -38,7 +26,13 @@ function Row({ label, value }: { label: string; value: string }) {
   );
 }
 
-export default function ProfileMenu({ user, onLogout }: ProfileMenuProps) {
+export default function ProfileMenu({
+  user,
+  onLogout,
+}: {
+  user: User;
+  onLogout: ProfileMenuProps;
+}) {
   const [open, setOpen] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
 
@@ -46,7 +40,8 @@ export default function ProfileMenu({ user, onLogout }: ProfileMenuProps) {
   useEffect(() => {
     if (!open) return;
     const onClick = (e: MouseEvent) => {
-      if (ref.current && !ref.current.contains(e.target as Node)) setOpen(false);
+      if (ref.current && !ref.current.contains(e.target as Node))
+        setOpen(false);
     };
     const onKey = (e: KeyboardEvent) => e.key === "Escape" && setOpen(false);
     document.addEventListener("mousedown", onClick);
@@ -106,7 +101,9 @@ export default function ProfileMenu({ user, onLogout }: ProfileMenuProps) {
               {initials(user.name)}
             </span>
             <div className="min-w-0">
-              <p className="truncate font-semibold text-slate-900">{user.name}</p>
+              <p className="truncate font-semibold text-slate-900">
+                {user.name}
+              </p>
               <p className="truncate text-xs text-slate-500">{user.email}</p>
             </div>
           </div>
@@ -121,7 +118,10 @@ export default function ProfileMenu({ user, onLogout }: ProfileMenuProps) {
           <button
             type="button"
             role="menuitem"
-            onClick={onLogout}
+            onClick={() => {
+              setOpen(false);
+              onLogout();
+            }}
             className="mt-3 flex w-full items-center justify-center gap-2 rounded-lg bg-red-50 py-2.5 text-sm font-medium text-red-600 hover:bg-red-100"
           >
             <FaSignOutAlt aria-hidden />
