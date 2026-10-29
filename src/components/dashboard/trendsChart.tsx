@@ -26,7 +26,7 @@ export default function TrendsChart({ data }: { data: MonthlyPoint[] }) {
         <BarChart data={data} margin={{ top: 8, right: 8, left: 0, bottom: 0 }}>
           <CartesianGrid
             vertical={false}
-            stroke="#e2e8f0"
+            stroke="var(--border)"
             strokeDasharray="3 3"
           />
           <XAxis
@@ -36,17 +36,17 @@ export default function TrendsChart({ data }: { data: MonthlyPoint[] }) {
             axisLine={false}
             interval="preserveStartEnd"
             minTickGap={4}
-            tick={{ fontSize: 12, fill: "#64748b" }}
+            tick={{ fontSize: 12, fill: "var(--text-muted)" }}
           />
           <YAxis
             width={48}
             tickFormatter={formatTick}
             tickLine={false}
             axisLine={false}
-            tick={{ fontSize: 12, fill: "#64748b" }}
+            tick={{ fontSize: 12, fill: "var(--text-muted)" }}
           />
           <Tooltip
-            cursor={{ fill: "#f1f5f9" }}
+            cursor={{ fill: "var(--surface-muted)" }}
             formatter={(v) => [formatCurrency(Number(v)), "Spent"]}
           />
           <Bar
