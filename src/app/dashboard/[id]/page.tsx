@@ -12,7 +12,6 @@ import TopBar from "@/src/features/topBar";
 import { DashboardFiltersProvider } from "@/src/context/filters/dashboardFilters";
 import { filtersData } from "@/src/mockdata/filtersMock";
 import { UserProvider } from "@/src/context/user/useContext";
-import { ScrollBehavior } from "next/dist/client/components/router-reducer/router-reducer-types";
 
 export default function DashboardPage() {
   const scrollTo = useRef<HTMLDivElement>(null);

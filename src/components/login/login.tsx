@@ -11,7 +11,7 @@ export default function Login() {
 
   const handleLogin = () => {
     if (user) {
-      router.push("/dashboard");
+      router.push(`/dashboard/${user.customerId}`);
       return;
     }
 
