@@ -38,7 +38,7 @@ export default function CategoryChart({
         fontSize={11}
         fontWeight={600}
       >
-        {categories[index].percentage.toFixed(1)}%
+        {categories[index]?.percentage?.toFixed(1)}%
       </text>
     );
   };

@@ -1,6 +1,8 @@
+"use client";
+import { useRef } from "react";
 import SpendingSummary from "@/src/features/spendingSummary";
 import CategoryMonthlySpending from "@/src/features/categoryMonthlySpending";
-import SpendingGoals from "@/src/features/spendingGoals";
+import { SpendingGoals } from "@/src/features/spendingGoals";
 import RecentTransactions from "@/src/features/recentTransactions";
 import SpendingInsights from "@/src/features/spendingInsights";
 import FiltersPanel from "@/src/features/filtersPanel";
@@ -9,10 +11,14 @@ import SideMenu from "@/src/components/nav/sideMenu";
 import TopBar from "@/src/features/topBar";
 import { DashboardFiltersProvider } from "@/src/context/filters/dashboardFilters";
 import { filtersData } from "@/src/mockdata/filtersMock";
-
 import { UserProvider } from "@/src/context/user/useContext";
 
 export default function DashboardPage() {
+  const scrollTo = useRef<HTMLDivElement>(null);
+
+  const srollToView = () => {
+    scrollTo.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+  };
   return (
     <DashboardLayout>
       <SideMenu />
@@ -32,14 +38,14 @@ export default function DashboardPage() {
 
               {/* Goals 1/3, transactions 2/3 on 2xl; stacked below that */}
               <div className="grid grid-cols-1 gap-6 2xl:grid-cols-[minmax(0,1fr)_minmax(0,2fr)]">
-                <SpendingGoals />
+                <SpendingGoals ref={scrollTo} />
                 <RecentTransactions />
               </div>
             </div>
 
             <aside className="grid grid-cols-1 content-start gap-6 md:grid-cols-2 xl:grid-cols-1">
               <SpendingInsights />
-              <FiltersPanel data={filtersData} />
+              <FiltersPanel data={filtersData} scroll={srollToView} />
             </aside>
           </div>
         </DashboardFiltersProvider>

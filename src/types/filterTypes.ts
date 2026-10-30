@@ -1,4 +1,4 @@
-import type { Period } from "@/src/components/ui/periodSelector";
+import type { Period } from "@/src/components/dashboard/periodSelector";
 
 export type FilterCategory = {
   name: string;

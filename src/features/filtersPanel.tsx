@@ -7,7 +7,13 @@ import CategorySelect from "./categorySelect";
 import DateRangePills from "./dateRangePills";
 import type { FiltersData } from "@/src/types/filterTypes";
 
-export default function FiltersPanel({ data }: { data: FiltersData }) {
+export default function FiltersPanel({
+  data,
+  scroll,
+}: {
+  data: FiltersData;
+  scroll: () => void;
+}) {
   const { filters, setFilters, resetFilters } = useDashboardFilters();
 
   // Draft values: nothing changes on the dashboard until "Apply Filters" is pressed
@@ -61,9 +67,10 @@ export default function FiltersPanel({ data }: { data: FiltersData }) {
 
         <button
           type="button"
-          onClick={() =>
-            setFilters({ range: draftRange, category: draftCategory })
-          }
+          onClick={() => {
+            setFilters({ range: draftRange, category: draftCategory });
+            scroll();
+          }}
           className="flex w-full items-center justify-center gap-2 rounded-lg bg-blue-600 py-3 text-sm font-semibold text-white transition-colors hover:bg-blue-700"
         >
           <FaFilter aria-hidden className="h-3.5 w-3.5" />
