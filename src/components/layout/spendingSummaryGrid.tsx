@@ -6,7 +6,7 @@ export default function SpendingSummaryGrid({
   children: ReactNode;
 }) {
   return (
-    <div className="grid flex-1 gap-4 grid-cols-1 md:grid-cols-2 xl:grid-cols-4 p-10">
+    <div className="grid flex-1 gap-4 grid-cols-1 md:grid-cols-2 2xl:grid-cols-4 p-10">
       {children}
     </div>
   );
