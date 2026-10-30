@@ -1,5 +1,6 @@
 "use client";
-import { useRef } from "react";
+import { Suspense, useRef } from "react";
+import { useParams } from "next/navigation";
 import SpendingSummary from "@/src/features/spendingSummary";
 import CategoryMonthlySpending from "@/src/features/categoryMonthlySpending";
 import { SpendingGoals } from "@/src/features/spendingGoals";
@@ -11,23 +12,62 @@ import SideMenu from "@/src/components/nav/sideMenu";
 import TopBar from "@/src/features/topBar";
 import { DashboardFiltersProvider } from "@/src/context/filters/dashboardFilters";
 import { filtersData } from "@/src/mockdata/filtersMock";
-import { UserProvider } from "@/src/context/user/useContext";
+import { UserProvider, useUser } from "@/src/context/user/useContext";
 
 export default function DashboardPage() {
+  return (
+    <UserProvider>
+      <Suspense
+        fallback={
+          <DashboardLayout>
+            <main className="flex min-h-screen flex-1 items-center justify-center">
+              <p>Loading user data...</p>
+            </main>
+          </DashboardLayout>
+        }
+      >
+        <DashboardContent />
+      </Suspense>
+    </UserProvider>
+  );
+}
+
+function DashboardContent() {
+  const { id } = useParams<{ id: string }>();
+  const { user, isLoading } = useUser();
   const scrollTo = useRef<HTMLDivElement>(null);
 
   const srollToView = () => {
     scrollTo.current?.scrollIntoView({ behavior: "smooth", block: "start" });
   };
+
+  if (isLoading) {
+    return (
+      <DashboardLayout>
+        <main className="flex min-h-screen flex-1 items-center justify-center">
+          <p>Loading user data...</p>
+        </main>
+      </DashboardLayout>
+    );
+  }
+
+  if (!user || user.customerId !== id) {
+    return (
+      <DashboardLayout>
+        <main className="flex min-h-screen flex-1 items-center justify-center">
+          <p role="alert">User data not found</p>
+        </main>
+      </DashboardLayout>
+    );
+  }
+
   return (
     <DashboardLayout>
       <SideMenu />
       {/* pt-14 leaves room for the fixed mobile top bar */}
       <main className="min-w-0 flex-1 pt-14 lg:pt-0">
         <DashboardFiltersProvider>
-          <UserProvider>
-            <TopBar />
-          </UserProvider>
+          <TopBar />
 
           {/* xl and up: main content + a 320px right column. Below xl the right column drops underneath. */}
           <div className="grid grid-cols-1 gap-6 px-4 pb-8 sm:px-6 xl:grid-cols-[minmax(0,1fr)_320px]">

@@ -13,12 +13,14 @@ import { logger } from "@/src/lib/utils/logger";
 type UserContextValue = {
   user: User | null;
   setUser: (user: User | null) => void;
+  isLoading: boolean;
 };
 
 const UserContext = createContext<UserContextValue | null>(null);
 
 export function UserProvider({ children }: { children: ReactNode }) {
   const [user, setUser] = useState<User | null>(null);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     let active = true;
@@ -29,6 +31,9 @@ export function UserProvider({ children }: { children: ReactNode }) {
       })
       .catch((error: unknown) => {
         logger.error(error, "Failed to load user");
+      })
+      .finally(() => {
+        if (active) setIsLoading(false);
       });
 
     return () => {
@@ -37,7 +42,7 @@ export function UserProvider({ children }: { children: ReactNode }) {
   }, []);
 
   return (
-    <UserContext.Provider value={{ user, setUser }}>
+    <UserContext.Provider value={{ user, setUser, isLoading }}>
       {children}
     </UserContext.Provider>
   );
