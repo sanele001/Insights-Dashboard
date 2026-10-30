@@ -1,3 +1,7 @@
+/**
+ * Displays a single dashboard KPI with an optional positive or negative trend indicator.
+ */
+
 import { FiTrendingUp, FiTrendingDown } from "react-icons/fi";
 import type { StatCardProps } from "@/src/types/dashBoard";
 

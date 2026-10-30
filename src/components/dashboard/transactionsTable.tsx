@@ -1,3 +1,12 @@
+/**
+ * Renders recent transactions in a responsive table for desktop and a stacked list for mobile.
+ *
+ * Responsive layout:
+ *  - `md` and up: a real table (Date | Merchant | Category | Payment Method | Amount)
+ *  - below `md`: a stacked list. Merchant + "Category · date" on the left,
+ *    amount + payment method on the right.
+ */
+
 import CategoryIcon from "@/src/features/categoryIcon";
 import { formatCurrency, formatDate } from "@/src/lib/utils/formatters";
 import type { Transaction } from "@/src/types/transactionTypes";
@@ -18,12 +27,6 @@ function CategoryBadge({ t, size }: { t: Transaction; size: "sm" | "md" }) {
   );
 }
 
-/**
- * Responsive layout:
- *  - `md` and up: a real table (Date | Merchant | Category | Payment Method | Amount)
- *  - below `md`: a stacked list. Merchant + "Category · date" on the left,
- *    amount + payment method on the right.
- */
 export default function TransactionsTable({
   transactions,
 }: {

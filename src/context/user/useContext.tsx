@@ -1,4 +1,7 @@
 "use client";
+/**
+ * Loads the current user once and exposes it to descendants through the user context.
+ */
 import {
   createContext,
   useContext,
@@ -48,6 +51,9 @@ export function UserProvider({ children }: { children: ReactNode }) {
   );
 }
 
+/**
+ * Retrieves the authenticated user state from context.
+ */
 export function useUser() {
   const context = useContext(UserContext);
   if (!context) {

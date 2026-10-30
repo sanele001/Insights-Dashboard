@@ -1,5 +1,9 @@
 "use client";
 
+/**
+ * Renders a donut chart showing how each category contributes to the total spend.
+ */
+
 import { PieChart, Pie, Cell, Tooltip, ResponsiveContainer } from "recharts";
 import { formatCurrency } from "@/src/lib/utils/formatters";
 import type { Category } from "@/src/types/categoryTypes";

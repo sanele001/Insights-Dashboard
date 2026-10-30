@@ -1,3 +1,7 @@
+/**
+ * Displays a single spending goal with progress, remaining budget, and status messaging.
+ */
+
 import { FaExclamationTriangle } from "react-icons/fa";
 import CategoryIcon from "@/src/features/categoryIcon";
 import { formatCurrency } from "@/src/lib/utils/formatters";

@@ -1,5 +1,9 @@
 "use client";
 
+/**
+ * Provides the current dashboard filter state and helpers for updating or resetting it.
+ */
+
 import {
   createContext,
   useContext,
@@ -50,6 +54,9 @@ export function DashboardFiltersProvider({
   );
 }
 
+/**
+ * Retrieves the active dashboard filtering context.
+ */
 export function useDashboardFilters() {
   const ctx = useContext(FiltersContext);
   if (!ctx) {
