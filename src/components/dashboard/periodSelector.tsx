@@ -1,4 +1,7 @@
 "use client";
+/**
+ * Allows users to switch between preset reporting periods using a select input.
+ */
 
 import { useId } from "react";
 import { FaRegCalendarAlt, FaChevronDown } from "react-icons/fa";

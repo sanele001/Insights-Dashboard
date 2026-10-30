@@ -11,12 +11,18 @@ type CategoriesResponse = {
   monthlySpending: MonthlyPoint[];
 };
 
+/**
+ * Fetches category spending and monthly trending data from the API.
+ */
 const fetchCategories = async (url: string): Promise<CategoriesResponse> => {
   const res = await fetch(url);
   if (!res.ok) throw new Error("Failed to load categories");
   return (await res.json()) as CategoriesResponse;
 };
 
+/**
+ * Loads category-based spending data and optional monthly trend data for the active filters.
+ */
 export function useCategories(filters: DashboardFilters) {
   const params = new URLSearchParams();
   if (filters.category) params.set("category", filters.category);

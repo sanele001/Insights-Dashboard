@@ -19,6 +19,9 @@ function getPages(page: number, total: number): (number | string)[] {
 const baseButton =
   "flex h-9 min-w-9 items-center justify-center rounded-lg border px-2 text-sm transition-colors disabled:cursor-not-allowed disabled:opacity-40";
 
+/**
+ * Renders page navigation with previous/next controls and compact page indicators.
+ */
 export default function Pagination({
   page,
   totalPages,

@@ -11,6 +11,9 @@ const Mock = {
   },
 };
 
+/**
+ * Returns the mocked dashboard summary values used for the current spending overview.
+ */
 export function getSummary() {
   // mock url /api/customers/{customerId}/spending/summary?period={period}
   return spendingSummaryschema.parse(Mock);

@@ -1,4 +1,7 @@
-import Link from "next/link";
+/**
+ * Lists monthly spending goals and renders an empty state when no goals are available.
+ */
+
 import { FaArrowRight } from "react-icons/fa";
 import GoalCard from "./goalCard";
 import type { Goal } from "@/src/types/goalTypes";

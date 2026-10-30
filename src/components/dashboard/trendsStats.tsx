@@ -1,3 +1,6 @@
+/**
+ * Summarises the lowest, highest, and overall movement in monthly spending data.
+ */
 import { FaArrowUp, FaArrowDown } from "react-icons/fa";
 import { formatCurrency } from "@/src/lib/utils/formatters";
 import type { MonthlyPoint } from "@/src/types/trendTypes";

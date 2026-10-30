@@ -14,6 +14,9 @@ import type {
 //   return res.json();
 // ---------------------------------------------------------------------------
 
+/**
+ * Fetches the base transaction templates used to generate the mock transaction dataset.
+ */
 const fetchTransactionTemplates = async (): Promise<Transaction[]> => {
   const res = await fetch("/api/transections");
   if (!res.ok) throw new Error("Failed to load transactions");
@@ -24,6 +27,9 @@ const fetchTransactionTemplates = async (): Promise<Transaction[]> => {
 let ALL: Transaction[] = [];
 let transactionsLoaded = false;
 
+/**
+ * Loads the generated mock transaction list once and memoizes it for pagination queries.
+ */
 async function loadTransactions(): Promise<void> {
   if (transactionsLoaded) return;
 
@@ -46,6 +52,9 @@ async function loadTransactions(): Promise<void> {
   transactionsLoaded = true;
 }
 
+/**
+ * Returns a paginated slice of transactions, optionally filtered by category.
+ */
 export async function fetchTransactions({
   offset,
   limit,
