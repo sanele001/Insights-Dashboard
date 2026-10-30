@@ -13,7 +13,7 @@ export default function StatCard({
   const isPositive = percentageChange !== undefined && percentageChange >= 0;
 
   return (
-    <div className="bg-white border border-gray-100 rounded-2xl p-6 shadow-sm hover:shadow-md transition-shadow duration-200 w-full max-w-sm">
+    <div className="bg-surface border border-border-subtle rounded-2xl p-6 shadow-sm hover:shadow-md transition-shadow duration-200 w-full max-w-sm">
       {/* Icon Header */}
       <div className="flex items-center justify-between mb-4">
         <div
@@ -22,11 +22,11 @@ export default function StatCard({
           <Icon className="w-6 h-6" />
         </div>
         {/* Title & Amount */}
-        <p className="text-sm font-medium text-gray-500">{title}</p>
+        <p className="text-sm font-medium text-muted">{title}</p>
       </div>
 
       <div className="space-y-1 mb-2 ml-10">
-        <h3 className="text-2xl font-bold text-gray-900 tracking-tight">
+        <h3 className="text-2xl font-bold text-primary tracking-tight">
           {value}
         </h3>
       </div>
@@ -48,7 +48,7 @@ export default function StatCard({
             </span>
           )}
           {comparisonText && (
-            <span className="text-gray-400 font-normal">{comparisonText}</span>
+            <span className="text-muted font-normal">{comparisonText}</span>
           )}
         </div>
       )}

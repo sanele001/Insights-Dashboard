@@ -15,21 +15,21 @@ export default function TrendsStats({ data }: { data: MonthlyPoint[] }) {
   const up = change >= 0;
 
   return (
-    <div className="mt-4 grid grid-cols-1 divide-y divide-slate-200 rounded-xl bg-slate-50 sm:grid-cols-3 sm:divide-x sm:divide-y-0">
+    <div className="mt-4 grid grid-cols-1 divide-y divide-border rounded-xl bg-surface-muted sm:grid-cols-3 sm:divide-x sm:divide-y-0">
       <div className="p-3 sm:p-4">
-        <p className="text-sm font-bold text-slate-900 sm:text-base">
+        <p className="text-sm font-bold text-primary sm:text-base">
           {formatCurrency(lowest.amount)}
         </p>
-        <p className="text-xs text-slate-500">
+        <p className="text-xs text-muted">
           Lowest ({shortMonth(lowest.month)})
         </p>
       </div>
 
       <div className="p-3 sm:p-4">
-        <p className="text-sm font-bold text-slate-900 sm:text-base">
+        <p className="text-sm font-bold text-primary sm:text-base">
           {formatCurrency(highest.amount)}
         </p>
-        <p className="text-xs text-slate-500">
+        <p className="text-xs text-muted">
           Highest ({shortMonth(highest.month)})
         </p>
       </div>
@@ -48,7 +48,7 @@ export default function TrendsStats({ data }: { data: MonthlyPoint[] }) {
           {up ? "+" : ""}
           {change.toFixed(1)}%
         </p>
-        <p className="text-xs text-slate-500">
+        <p className="text-xs text-muted">
           Overall {up ? "increase" : "decrease"}
         </p>
       </div>

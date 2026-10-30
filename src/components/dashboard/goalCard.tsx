@@ -17,7 +17,7 @@ export default function GoalCard({ goal }: { goal: Goal }) {
   const barWidth = Math.min(Math.max(goal.percentageUsed, 0), 100);
 
   return (
-    <article className="rounded-xl border border-slate-200 p-4">
+    <article className="rounded-xl border border-border p-4">
       <div className="flex items-center gap-3">
         <span
           className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg text-lg"
@@ -26,10 +26,10 @@ export default function GoalCard({ goal }: { goal: Goal }) {
           <CategoryIcon name={icon} />
         </span>
         <div className="min-w-0">
-          <h3 className="truncate font-semibold text-slate-900">
+          <h3 className="truncate font-semibold text-primary">
             {goal.category}
           </h3>
-          <p className="text-xs text-slate-500">
+          <p className="text-xs text-muted">
             Monthly budget: {formatCurrency(goal.monthlyBudget)}
           </p>
         </div>
@@ -37,16 +37,16 @@ export default function GoalCard({ goal }: { goal: Goal }) {
 
       <div className="mt-4 flex items-end justify-between gap-3">
         <div>
-          <p className="text-lg font-bold text-slate-900">
+          <p className="text-lg font-bold text-primary">
             {formatCurrency(goal.currentSpent)}
           </p>
-          <p className="text-xs text-slate-500">spent</p>
+          <p className="text-xs text-muted">spent</p>
         </div>
         <div className="text-right">
           <p className={`text-sm font-semibold ${styles.text}`}>
             {goal.percentageUsed.toFixed(2)}%
           </p>
-          <p className="text-xs text-slate-500">used</p>
+          <p className="text-xs text-muted">used</p>
         </div>
       </div>
 
@@ -56,7 +56,7 @@ export default function GoalCard({ goal }: { goal: Goal }) {
         aria-valuemin={0}
         aria-valuemax={100}
         aria-valuenow={Math.round(barWidth)}
-        className="mt-2 h-2 w-full overflow-hidden rounded-full bg-slate-100"
+        className="mt-2 h-2 w-full overflow-hidden rounded-full bg-surface-muted"
       >
         <div
           className={`h-full rounded-full ${styles.bar}`}
@@ -64,7 +64,7 @@ export default function GoalCard({ goal }: { goal: Goal }) {
         />
       </div>
 
-      <div className="mt-3 flex flex-wrap items-center justify-between gap-2 text-xs text-slate-500">
+      <div className="mt-3 flex flex-wrap items-center justify-between gap-2 text-xs text-muted">
         <span>
           {remaining >= 0
             ? `${formatCurrency(remaining)} remaining`

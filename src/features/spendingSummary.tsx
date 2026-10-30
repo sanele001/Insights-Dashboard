@@ -14,22 +14,13 @@ import {
   FaChartLine,
   FaShoppingCart,
 } from "react-icons/fa";
+import { getSummary } from "@/src/lib/services/spendingSummary";
 
 export default function SpendingSummary() {
-  const Mock = {
-    period: "30d",
-    totalSpent: 4250.75,
-    transactionCount: 47,
-    averageTransaction: 90.44,
-    topCategory: "Groceries",
-    comparedToPrevious: {
-      spentChange: 12.5,
-      transactionChange: -3.2,
-    },
-  };
+  const Mock = getSummary();
+
   return (
     <div className="flex min-w-0 flex-1 flex-col gap-4">
-      <h2 className="text-lg font-semibold">Spending Summary</h2>
       <SpendingSummaryGrid>
         <StatCard
           title="Total Spent"

@@ -28,7 +28,7 @@ export default function DateRangePills({
             className={`flex-1 rounded-lg px-2 py-2 text-xs font-medium transition-colors ${
               active
                 ? "bg-blue-600 text-white"
-                : "bg-slate-100 text-slate-600 hover:bg-slate-200"
+                : "bg-surface-muted text-secondary hover:bg-surface-hover"
             }`}
           >
             {p.value}

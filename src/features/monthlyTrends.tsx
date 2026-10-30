@@ -21,9 +21,9 @@ export default function MonthlyTrends({ data }: { data: MonthlyPoint[] }) {
   const visible = data.slice(-MONTHS[range]);
 
   return (
-    <section className="min-w-0 rounded-2xl bg-white p-4 shadow-sm sm:p-6">
+    <section className="min-w-0 rounded-2xl bg-surface p-4 shadow-sm sm:p-6">
       <div className="mb-4 flex flex-wrap items-center justify-between gap-3">
-        <h2 className="text-lg font-bold text-slate-900 sm:text-xl">
+        <h2 className="text-lg font-bold text-primary sm:text-xl">
           Monthly Spending Trends
         </h2>
         <PeriodSelector

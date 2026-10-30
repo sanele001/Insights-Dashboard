@@ -31,7 +31,7 @@ export default function TransactionsTable({
 }) {
   if (transactions.length === 0) {
     return (
-      <p className="py-10 text-center text-sm text-slate-500">
+      <p className="py-10 text-center text-sm text-muted">
         No transactions found.
       </p>
     );
@@ -42,7 +42,7 @@ export default function TransactionsTable({
       <table className="hidden w-full text-left md:table">
         <caption className="sr-only">Recent transactions</caption>
         <thead>
-          <tr className="border-b border-slate-100 text-xs text-slate-500">
+          <tr className="border-b border-border-subtle text-xs text-muted">
             <th scope="col" className="py-3 pr-3 font-medium">
               Date
             </th>
@@ -60,25 +60,25 @@ export default function TransactionsTable({
             </th>
           </tr>
         </thead>
-        <tbody className="divide-y divide-slate-100">
+        <tbody className="divide-y divide-border-subtle">
           {transactions.map((t) => (
             <tr key={t.id}>
-              <td className="whitespace-nowrap py-3 pr-3 text-sm text-slate-600">
+              <td className="whitespace-nowrap py-3 pr-3 text-sm text-muted">
                 {formatDate(t.date)}
               </td>
-              <td className="py-3 pr-3 text-sm font-medium text-slate-800">
+              <td className="py-3 pr-3 text-sm font-medium text-secondary">
                 {t.merchant}
               </td>
               <td className="py-3 pr-3">
-                <span className="flex items-center gap-2 text-sm text-slate-700">
+                <span className="flex items-center gap-2 text-sm text-secondary">
                   <CategoryBadge t={t} size="sm" />
                   {t.category}
                 </span>
               </td>
-              <td className="whitespace-nowrap py-3 pr-3 text-sm text-slate-600">
+              <td className="whitespace-nowrap py-3 pr-3 text-sm text-muted">
                 {t.paymentMethod}
               </td>
-              <td className="whitespace-nowrap py-3 text-right text-sm font-semibold text-slate-900">
+              <td className="whitespace-nowrap py-3 text-right text-sm font-semibold text-primary">
                 {formatCurrency(t.amount)}
               </td>
             </tr>
@@ -87,7 +87,7 @@ export default function TransactionsTable({
       </table>
 
       {/* List: below md */}
-      <ul className="divide-y divide-slate-100 md:hidden">
+      <ul className="divide-y divide-border-subtle md:hidden">
         {transactions.map((t) => (
           <li
             key={t.id}
@@ -96,19 +96,19 @@ export default function TransactionsTable({
             <div className="flex min-w-0 items-center gap-3">
               <CategoryBadge t={t} size="md" />
               <div className="min-w-0">
-                <p className="truncate text-sm font-medium text-slate-800">
+                <p className="truncate text-sm font-medium text-secondary">
                   {t.merchant}
                 </p>
-                <p className="text-xs text-slate-500">
+                <p className="text-xs text-muted">
                   {t.category} · {formatDate(t.date)}
                 </p>
               </div>
             </div>
             <div className="shrink-0 text-right">
-              <p className="text-sm font-semibold text-slate-900">
+              <p className="text-sm font-semibold text-primary">
                 {formatCurrency(t.amount)}
               </p>
-              <p className="text-xs text-slate-500">{t.paymentMethod}</p>
+              <p className="text-xs text-muted">{t.paymentMethod}</p>
             </div>
           </li>
         ))}
