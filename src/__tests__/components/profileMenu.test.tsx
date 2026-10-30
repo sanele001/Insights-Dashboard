@@ -1,9 +1,8 @@
 import { fireEvent, render, screen, within } from "@testing-library/react";
-import ProfileMenu, {
-  type Profile,
-} from "@/src/components/dashboard/profileMenu";
+import ProfileMenu from "@/src/components/dashboard/profileMenu";
+import type { User } from "@/src/schema/user";
 
-const user: Profile = {
+const user: User = {
   customerId: "12345",
   name: "John Doe",
   email: "john.doe@email.com",
