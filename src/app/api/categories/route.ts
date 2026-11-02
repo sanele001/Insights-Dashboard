@@ -1,5 +1,6 @@
 import type { Category } from "@/src/types/categoryTypes";
 import type { MonthlyPoint } from "@/src/types/trendTypes";
+import { categoryQuerySchema } from "@/src/schema/category";
 
 /**
  * Returns category spending totals filtered by category, alongside the full monthly spending series.
@@ -8,21 +9,23 @@ import type { MonthlyPoint } from "@/src/types/trendTypes";
  * @returns A JSON response containing the categories and monthlySpending arrays.
  */
 export async function GET(request: Request) {
-  const { searchParams } = new URL(request.url);
-  const category = searchParams.get("category");
+  const searchParams = new URL(request.url).searchParams;
+  const query = categoryQuerySchema.safeParse({
+    category: searchParams.get("category") ?? undefined,
+  });
 
-  return new Response(
-    JSON.stringify({
-      categories: category
-        ? categories.filter((item) => item.name === category)
-        : categories,
-      monthlySpending,
-    }),
-    {
-      status: 200,
-      headers: { "Content-Type": "application/json" },
-    },
-  );
+  if (!query.success) {
+    return Response.json({ error: "Invalid category query" }, { status: 400 });
+  }
+
+  const { category } = query.data;
+
+  return Response.json({
+    categories: category
+      ? categories.filter((item) => item.name === category)
+      : categories,
+    monthlySpending,
+  });
 }
 
 const categories: Category[] = [

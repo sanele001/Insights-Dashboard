@@ -1,7 +1,8 @@
 import type {
   Transaction,
   TransactionsResponse,
-} from "@/src/types/transactionTypes";
+} from "@/src/schema/transaction";
+import { transactionTemplatesSchema } from "@/src/schema/transaction";
 
 // ---------------------------------------------------------------------------
 // MOCK API. 47 generated transactions, served in pages like your real endpoint.
@@ -21,7 +22,8 @@ const fetchTransactionTemplates = async (): Promise<Transaction[]> => {
   const res = await fetch("/api/transections");
   if (!res.ok) throw new Error("Failed to load transactions");
 
-  return (await res.json()) as Transaction[];
+  const data: unknown = await res.json();
+  return transactionTemplatesSchema.parse(data);
 };
 
 let ALL: Transaction[] = [];

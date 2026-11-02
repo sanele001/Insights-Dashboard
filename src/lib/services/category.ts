@@ -1,15 +1,12 @@
 "use client";
 
-import type { Category } from "@/src/types/categoryTypes";
-import type { MonthlyPoint } from "@/src/types/trendTypes";
+import {
+  categoriesResponseSchema,
+  type CategoriesResponse,
+} from "@/src/schema/category";
 import type { DashboardFilters } from "@/src/context/filters/dashboardFilters";
 import { logger } from "@/src/lib/utils/logger";
 import useSWR from "swr";
-
-type CategoriesResponse = {
-  categories: Category[];
-  monthlySpending: MonthlyPoint[];
-};
 
 /**
  * Fetches category spending and monthly trending data from the API.
@@ -17,7 +14,8 @@ type CategoriesResponse = {
 const fetchCategories = async (url: string): Promise<CategoriesResponse> => {
   const res = await fetch(url);
   if (!res.ok) throw new Error("Failed to load categories");
-  return (await res.json()) as CategoriesResponse;
+  const data: unknown = await res.json();
+  return categoriesResponseSchema.parse(data);
 };
 
 /**

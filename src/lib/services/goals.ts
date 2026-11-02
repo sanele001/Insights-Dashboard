@@ -1,6 +1,9 @@
 "use client";
 import useSWR from "swr";
-import type { Goal } from "@/src/types/goalTypes";
+import {
+  goalsResponseSchema,
+  type Goal,
+} from "@/src/schema/goal";
 import { logger } from "../utils/logger";
 
 /**
@@ -9,7 +12,8 @@ import { logger } from "../utils/logger";
 const fetchGoals = async (url: string): Promise<Goal[]> => {
   const res = await fetch(url);
   if (!res.ok) throw new Error("Failed to load goals");
-  return await res.json();
+  const data: unknown = await res.json();
+  return goalsResponseSchema.parse(data);
 };
 
 /**

@@ -1,3 +1,5 @@
+import { userIdSchema, userSchema } from "@/src/schema/user";
+
 const user = {
   customerId: "12345",
   name: "John Doe",
@@ -13,10 +15,15 @@ export async function GET(
   { params }: { params: Promise<{ id: string }> },
 ) {
   const { id } = await params;
+  const validatedId = userIdSchema.safeParse(id);
 
-  if (user.customerId !== id) {
+  if (!validatedId.success) {
+    return Response.json({ error: "Invalid user ID" }, { status: 400 });
+  }
+
+  if (user.customerId !== validatedId.data) {
     return Response.json({ error: "User not found" }, { status: 404 });
   }
 
-  return Response.json(user);
+  return Response.json(userSchema.parse(user));
 }

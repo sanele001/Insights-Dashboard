@@ -1,4 +1,1 @@
-export type MonthlyPoint = {
-  month: string;
-  amount: number;
-};
+export type { MonthlyPoint } from "@/src/schema/category";

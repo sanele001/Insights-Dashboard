@@ -1,6 +1,9 @@
 "use client";
 import useSWR from "swr";
-import type { Insight } from "@/src/types/insightTypes";
+import {
+  insightsResponseSchema,
+  type Insight,
+} from "@/src/schema/insight";
 import { logger } from "../utils/logger";
 
 /**
@@ -9,7 +12,8 @@ import { logger } from "../utils/logger";
 const fetchInsights = async (url: string): Promise<Insight[]> => {
   const res = await fetch(url);
   if (!res.ok) throw new Error("Failed to load insights");
-  return await res.json();
+  const data: unknown = await res.json();
+  return insightsResponseSchema.parse(data);
 };
 
 /**
@@ -22,7 +26,7 @@ export function useInsights() {
     fetchInsights,
     {
       onError: (requestError: unknown) => {
-        logger.error(requestError, "Failed to load fetch goals");
+        logger.error(requestError, "Failed to load insights");
       },
     },
   );

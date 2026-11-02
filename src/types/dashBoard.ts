@@ -1,31 +1,17 @@
 import { IconType } from "react-icons";
-export interface SpendingSummary {
-  period: string;
-  totalSpent: number;
-  transactionCount: number;
-  averageTransaction: number;
-  topCategory: string;
-  comparedToPrevious: ComparedToPrevious;
+import type { SpendingSummaryData } from "@/src/schema/spendingSummary";
+import type { User } from "@/src/schema/user";
+
+export interface SpendingSummary extends SpendingSummaryData {
   Icon: IconType; // React Icon component
   iconBgColor?: string; // Optional Tailwind background color class
   iconColor?: string; // Optional Tailwind text color class
   title?: string;
 }
 
-export interface ComparedToPrevious {
-  spentChange: number;
-  transactionChange: number;
-}
+export type ComparedToPrevious = SpendingSummaryData["comparedToPrevious"];
 
-export interface CustomerProfile {
-  customerId: string;
-  name: string;
-  email: string;
-  joinDate: string;
-  accountType: string;
-  totalSpent: number;
-  currency: string;
-}
+export type CustomerProfile = User;
 
 export interface StatCardProps {
   title: string;
