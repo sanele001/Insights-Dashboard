@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import { useUser } from "@/src/context/user/useContext";
 
 export default function Login() {
-  const { user } = useUser();
+  const { user, isLoading } = useUser();
   const router = useRouter();
   const [showWarning, setShowWarning] = useState<boolean>(false);
 
@@ -23,7 +23,8 @@ export default function Login() {
       <button
         type="button"
         onClick={handleLogin}
-        className="text-white bg-[#0f1419] hover:bg-[#0f1419]/90 focus:ring-4 focus:outline-none focus:ring-[#0f1419]/50 box-border border border-transparent font-medium leading-5 rounded-base text-sm px-4 py-2.5 text-center inline-flex items-center gap-2 dark:hover:bg-[#24292F] dark:focus:ring-[#24292F]/55"
+        disabled={isLoading}
+        className="text-white bg-[#0f1419] hover:bg-[#0f1419]/90 focus:ring-4 focus:outline-none focus:ring-[#0f1419]/50 box-border border border-transparent font-medium leading-5 rounded-base text-sm px-4 py-2.5 text-center inline-flex items-center gap-2 disabled:cursor-not-allowed disabled:opacity-60 dark:hover:bg-[#24292F] dark:focus:ring-[#24292F]/55"
       >
         <FaEnvelope aria-hidden="true" />
         Sign in with email

@@ -366,6 +366,7 @@ The project defines the following npm scripts:
 | `npm run start` | Starts the production server |
 | `npm run lint` | Runs ESLint |
 | `npm run test` | Runs Jest tests |
+| `npm run test:e2e` | Runs Playwright end-to-end tests |
 
 ### Development Mode
 
@@ -841,7 +842,8 @@ Represents a customer's budget target.
 
 ## Testing
 
-The project uses Jest and React Testing Library for automated testing.
+The project uses Jest and React Testing Library for unit and component tests,
+and Playwright for browser-based end-to-end tests.
 
 ### Run Tests
 
@@ -861,14 +863,28 @@ npm test -- --watch
 npm test -- --coverage
 ```
 
+### Run End-to-End Tests
+
+```bash
+npm run test:e2e
+```
+
+Playwright starts the development server automatically. Install the browser
+before the first run with:
+
+```bash
+npx playwright install chromium
+```
+
 ### Testing Configuration
 
 The repository includes:
 
 - `jest.config.ts`
 - `jest.setup.ts`
+- `playwright.config.ts`
 
-These files provide the configuration and setup required for the Jest testing environment.
+These files configure the Jest and Playwright test environments.
 
 ---
 
