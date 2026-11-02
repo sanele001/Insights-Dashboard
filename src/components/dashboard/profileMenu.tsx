@@ -1,5 +1,9 @@
 "use client";
 
+/**
+ * Shows the signed-in user summary and a compact menu with account details and logout.
+ */
+
 import { useEffect, useRef, useState } from "react";
 import { FaChevronDown, FaSignOutAlt } from "react-icons/fa";
 import { User } from "@/src/schema/user";
@@ -101,9 +105,7 @@ export default function ProfileMenu({
               {initials(user.name)}
             </span>
             <div className="min-w-0">
-              <p className="truncate font-semibold text-primary">
-                {user.name}
-              </p>
+              <p className="truncate font-semibold text-primary">{user.name}</p>
               <p className="truncate text-xs text-muted">{user.email}</p>
             </div>
           </div>

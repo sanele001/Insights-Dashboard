@@ -1,4 +1,7 @@
 "use client";
+/**
+ * Visualizes monthly spending in a responsive bar chart for easy trend comparison.
+ */
 
 import {
   BarChart,

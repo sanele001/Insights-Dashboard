@@ -1,7 +1,8 @@
 import type {
   Transaction,
   TransactionsResponse,
-} from "@/src/types/transactionTypes";
+} from "@/src/schema/transaction";
+import { transactionTemplatesSchema } from "@/src/schema/transaction";
 
 // ---------------------------------------------------------------------------
 // MOCK API. 47 generated transactions, served in pages like your real endpoint.
@@ -14,16 +15,23 @@ import type {
 //   return res.json();
 // ---------------------------------------------------------------------------
 
+/**
+ * Fetches the base transaction templates used to generate the mock transaction dataset.
+ */
 const fetchTransactionTemplates = async (): Promise<Transaction[]> => {
   const res = await fetch("/api/transections");
   if (!res.ok) throw new Error("Failed to load transactions");
 
-  return (await res.json()) as Transaction[];
+  const data: unknown = await res.json();
+  return transactionTemplatesSchema.parse(data);
 };
 
 let ALL: Transaction[] = [];
 let transactionsLoaded = false;
 
+/**
+ * Loads the generated mock transaction list once and memoizes it for pagination queries.
+ */
 async function loadTransactions(): Promise<void> {
   if (transactionsLoaded) return;
 
@@ -46,6 +54,9 @@ async function loadTransactions(): Promise<void> {
   transactionsLoaded = true;
 }
 
+/**
+ * Returns a paginated slice of transactions, optionally filtered by category.
+ */
 export async function fetchTransactions({
   offset,
   limit,

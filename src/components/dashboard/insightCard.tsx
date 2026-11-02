@@ -1,3 +1,7 @@
+/**
+ * Displays a single dashboard insight with its icon, title, and explanatory text.
+ */
+
 import CategoryIcon from "@/src/features/categoryIcon";
 import type { Insight } from "@/src/types/insightTypes";
 
@@ -11,9 +15,7 @@ export default function InsightCard({ insight }: { insight: Insight }) {
         <CategoryIcon name={insight.icon} />
       </span>
       <div className="min-w-0">
-        <h3 className="text-sm font-semibold text-primary">
-          {insight.title}
-        </h3>
+        <h3 className="text-sm font-semibold text-primary">{insight.title}</h3>
         <p className="mt-1 text-xs leading-relaxed text-muted">
           {insight.description}
         </p>

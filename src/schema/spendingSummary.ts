@@ -1,19 +1,20 @@
 import { z } from "zod";
 
-export const spendingSummaryschema = z.object({
-  period: z.string(),
+export const spendingSummarySchema = z.object({
+  period: z.string().min(1),
   totalSpent: z.number().nonnegative("Total spent cannot be negative"),
   transactionCount: z
     .number()
-    .nonnegative("transectionCount cannot be negative"),
+    .int()
+    .nonnegative("Transaction count cannot be negative"),
   averageTransaction: z
     .number()
-    .nonnegative("averageTransection cannot be negative"),
-  topCategory: z.string(),
+    .nonnegative("Average transaction cannot be negative"),
+  topCategory: z.string().min(1),
   comparedToPrevious: z.object({
     spentChange: z.number(),
     transactionChange: z.number(),
   }),
 });
 
-export type spendingSummry = z.infer<typeof spendingSummaryschema>;
+export type SpendingSummaryData = z.infer<typeof spendingSummarySchema>;

@@ -1,5 +1,8 @@
 import { userSchema, type User } from "@/src/schema/user";
 
+/**
+ * Fetches a user profile by ID and validates it against the dashboard user schema.
+ */
 export async function fetchUserById(userId: string): Promise<User> {
   const response = await fetch(`/api/users/${encodeURIComponent(userId)}`);
   if (!response.ok) {

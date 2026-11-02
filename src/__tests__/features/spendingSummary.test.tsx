@@ -2,12 +2,13 @@ import SpendingSummary from "@/src/features/spendingSummary";
 import { render, screen } from "@testing-library/react";
 
 describe("SpendingSummary", () => {
-  it("mounts and displays the heading", () => {
+  it("renders the finance summary cards", () => {
     render(<SpendingSummary />);
 
-    expect(
-      screen.getByRole("heading", { name: "Spending Summary" }),
-    ).toBeInTheDocument();
+    expect(screen.getByText("Total Spent")).toBeInTheDocument();
+    expect(screen.getByText("Transactions")).toBeInTheDocument();
+    expect(screen.getByText("Average Transaction")).toBeInTheDocument();
+    expect(screen.getByText("Top Category")).toBeInTheDocument();
   });
 
   it("renders four stat cards", () => {

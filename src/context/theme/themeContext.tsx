@@ -1,4 +1,7 @@
 "use client";
+/**
+ * Wraps children with persisted light/dark theme state and updates the document root dataset.
+ */
 
 import {
   createContext,
@@ -44,6 +47,9 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
   );
 }
 
+/**
+ * Reads the current theme context and exposes the toggle helper.
+ */
 export function useTheme() {
   const context = useContext(ThemeContext);
 

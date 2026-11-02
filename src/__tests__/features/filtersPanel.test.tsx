@@ -16,12 +16,17 @@ function AppliedFilters() {
 }
 
 function renderFiltersPanel() {
-  return render(
-    <DashboardFiltersProvider>
-      <FiltersPanel data={filtersData} />
-      <AppliedFilters />
-    </DashboardFiltersProvider>,
-  );
+  const scroll = jest.fn();
+
+  return {
+    scroll,
+    ...render(
+      <DashboardFiltersProvider>
+        <FiltersPanel data={filtersData} scroll={scroll} />
+        <AppliedFilters />
+      </DashboardFiltersProvider>,
+    ),
+  };
 }
 
 describe("FiltersPanel", () => {
@@ -42,7 +47,7 @@ describe("FiltersPanel", () => {
   });
 
   it("applies draft date range and category only when Apply Filters is pressed", () => {
-    renderFiltersPanel();
+    const { scroll } = renderFiltersPanel();
 
     fireEvent.click(screen.getByRole("radio", { name: "Last 7 days" }));
     fireEvent.click(screen.getByRole("button", { name: "Filter by category" }));
@@ -54,6 +59,7 @@ describe("FiltersPanel", () => {
 
     fireEvent.click(screen.getByRole("button", { name: "Apply Filters" }));
 
+    expect(scroll).toHaveBeenCalledTimes(1);
     expect(screen.getByLabelText("Applied filters")).toHaveTextContent(
       "7d|Groceries",
     );
