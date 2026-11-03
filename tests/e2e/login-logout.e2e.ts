@@ -28,6 +28,8 @@ test("user can log in, view the dashboard, and log out", async ({ page }) => {
     name: "Sign in with email",
   });
   await expect(signInButton).toBeVisible();
+  await expect(page.getByLabel("Email")).toHaveValue(user.email);
+  await expect(page.getByLabel("Password")).toHaveValue(user.email);
   const userResponse = await userResponsePromise;
   expect(userResponse.status()).toBe(200);
   expect(await userResponse.json()).toMatchObject(user);
