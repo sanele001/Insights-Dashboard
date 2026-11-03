@@ -19,7 +19,7 @@ COPY . .
 RUN npm run build
 
 FROM base AS runner
-# Configure the production server to listen on all interfaces at port 3000.
+#  production server to listen on all interfaces at port 3000.
 ENV NODE_ENV=production
 ENV HOSTNAME=0.0.0.0
 ENV PORT=3000
